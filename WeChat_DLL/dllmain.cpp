@@ -4,10 +4,16 @@
 #define hookAddr 0x401000;
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
-
+DWORD dwBaseAddress(0);
 void __declspec(naked)MyFunc()
 {
 	MessageBoxA(0, "hOOK！", "提示", 0);
+	dwBaseAddress = dwBaseAddress + 9;
+	__asm//还原现场
+	{
+		popfd
+		popad
+	}
 	__asm//还原现场
 	{
 		popfd
@@ -15,7 +21,7 @@ void __declspec(naked)MyFunc()
 	}
 	__asm //EIP修复
 	{
-		//jmp[hookAddr]  // jmp或ret 退出返回
+		jmp dwBaseAddress  // jmp或ret 退出返回
 	}
 }
 
@@ -38,12 +44,11 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 				MessageBoxA(hModule, "打开进程失败！", "提示", 0);
 				break;
 			}
-			DWORD dwBaseAddress = hookAddr; //指定地址
+			dwBaseAddress = hookAddr; //指定地址
 			unsigned char ucReadCode[9] = {};//定义缓冲区，用于保存原字节
 			DWORD dwNumberOfBytesRead(0);//用于获取成功读取字节的数量
-			DWORD pdOldProtect(0);//用于保存修改前的内存属性
-			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucReadCode), PAGE_EXECUTE_READWRITE, &pdOldProtect);//修改内存属性，避免内存保护出现读写问题
-			MessageBoxA(hModule, "MEM！", "提示", 0);
+			DWORD dwOldProtect(0);//用于保存修改前的内存属性
+			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucReadCode), PAGE_EXECUTE_READWRITE, &dwOldProtect);//修改内存属性，避免内存保护出现读写问题
 			bool bResult = ReadProcessMemory(hProcess, (LPCVOID)dwBaseAddress, &ucReadCode, sizeof(ucReadCode), &dwNumberOfBytesRead); //读取内存
 			if (bResult == false || dwNumberOfBytesRead != sizeof(ucReadCode))
 			{
@@ -55,9 +60,8 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 			DWORD dwMyFunc = (DWORD)&MyFunc; //取要跳转去的子程序地址
 			memcpy_s(&ucHookCode[3], sizeof(DWORD), &dwMyFunc, sizeof(dwMyFunc));//修改HOOK代码参数,将跳转目标改成的自己子程序地址->jmp &MyFunc
 			DWORD dwNumberOfBytesWritten(0);//用于获取成功写入字节的数量
-
-			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucHookCode), pdOldProtect, &pdOldProtect);//修改内存属性，避免内存保护出现读写问题
-			int Writeresult = WriteProcessMemory(hProcess, (LPVOID)dwBaseAddress, &ucHookCode, sizeof(ucHookCode), &dwNumberOfBytesWritten); //写入
+			bResult = WriteProcessMemory(hProcess, (LPVOID)dwBaseAddress, &ucHookCode, sizeof(ucHookCode), &dwNumberOfBytesWritten); //写入内存
+			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucHookCode), dwOldProtect, &dwOldProtect);//恢复旧内存属性
 			if (bResult == false || dwNumberOfBytesWritten != sizeof(ucHookCode))
 			{
 				MessageBoxA(hModule, "内存写入失败！", "提示", 0);
