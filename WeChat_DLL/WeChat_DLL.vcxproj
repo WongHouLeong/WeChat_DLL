@@ -81,15 +81,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="MemoryLib.cpp" />
-    <ClCompile Include="StringLib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="UtilityLib.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WeChat_DLL.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilityLib\UtilityLib.vcxproj">
+      <Project>{4f1fa9c6-0dbb-47f3-9dc1-0ff9a6f3d02e}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

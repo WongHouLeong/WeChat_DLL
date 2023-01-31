@@ -1,7 +1,6 @@
 ﻿#include "UtilityLib.h"
 #include "resource.h"
 
-
 #define hookAddr 0x401000;
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
@@ -41,30 +40,19 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		switch (wParam)
 		{
 		case IDOK: { //确认
-
-			if (hProcess == NULL)
-			{
-				MessageBoxA(hModule, "打开进程失败！", "提示", 0);
-				break;
-			}
+			if (hProcess != NULL)
+				Console::DbgPrintf("进程句柄：%X", hProcess);
 			dwBaseAddress = hookAddr; //指定地址
-			unsigned char ucReadCode[9] = {};//定义缓冲区，用于保存原字节
-			bool bResult = Lib.ReadProcessMemory(hProcess, dwBaseAddress, &ucReadCode, sizeof(ucReadCode)); //读取内存
-			if (bResult == false)
+			unsigned char ucReadCode[20] = {};//定义缓冲区，用于保存原字节
+			bool bResult = Lib.ReadProcessMemory(hProcess, dwBaseAddress, &ucReadCode, sizeof(ucReadCode)); //读取内存		
+			if (bResult == true)
 			{
-				MessageBoxA(hModule, "内存读取失败！", "提示", 0);
-				break;
+				Console::DbgPrintf("读取地址：%X 成功", dwBaseAddress);
+				OutputDebugStringA(Console::GetHexArry(ucReadCode, sizeof(ucReadCode)));
 			}
-
-			//Console::WriteLine("AAA,%d", 1, 2, 3);
-			Console::DbgPrintf("AAA,%d,%d,%d", 1, 2, 3);
-
-			bResult = Lib.InlineHook(hProcess, dwBaseAddress, &MyFunc); //读取内存
-			if (bResult == false)
-			{
-				MessageBoxA(hModule, "hook失败！", "提示", 0);
-				break;
-			}
+			bResult = Lib.InlineHook(hProcess, dwBaseAddress, 20, &MyFunc); //读取内存
+			if (bResult == true)
+				Console::DbgPrintf("Hook地址：%X 成功", dwBaseAddress);
 			MessageBoxA(hModule, "okok！", "提示", 0);
 			break;
 

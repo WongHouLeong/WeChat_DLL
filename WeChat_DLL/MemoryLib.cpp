@@ -23,9 +23,12 @@ bool UtilityLib::WriteProcessMemory(HANDLE hProcess, DWORD dwBaseAddress, LPCVOI
 		return false;
 	return true;
 }
-bool UtilityLib::InlineHook(HANDLE hProcess, DWORD dwHookAddress, LPCVOID pFuncAddress)
+bool UtilityLib::InlineHook(HANDLE hProcess, DWORD dwHookAddress, DWORD dwHookSize, LPCVOID pFuncAddress)
 {
-	unsigned char ucHookCode[9] = { 0x60,0x9C,0xB8,0x00,0x00,0x00,0x00,0xFF,0xE0 }; //缓冲区，定义Hook 代码 > pushad - pushfd - mov eax,0x00000000 - jmp eax，即将写入进程的字节
+	if (dwHookSize <= 9) dwHookSize = 9;//hook代码最少需要9位长度
+	if (dwHookSize >= 1024) dwHookSize = 1024;//空间预留，一般hook不超50长度
+	unsigned char ucHookCode[1024] = { 0x60,0x9C,0xB8,0x00,0x00,0x00,0x00,0xFF,0xE0 };//赋值Hook 代码 > pushad - pushfd - mov eax,0x00000000 - jmp eax
 	memcpy_s(&ucHookCode[3], sizeof(DWORD), &pFuncAddress, sizeof(DWORD));//修改HOOK代码参数,将跳转目标改成的自己子程序地址->jmp &MyFunc
-	return WriteProcessMemory(hProcess, dwHookAddress, &ucHookCode, sizeof(ucHookCode)); //写入内存
+	memset(ucHookCode + 9, 0x90, dwHookSize - 9);//剩余长度以0x90(nop)补充
+	return WriteProcessMemory(hProcess, dwHookAddress, &ucHookCode, dwHookSize); //写入内存
 }
