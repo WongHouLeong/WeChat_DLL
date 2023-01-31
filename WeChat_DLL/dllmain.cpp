@@ -1,10 +1,12 @@
-﻿#include <Windows.h>
+﻿#include "UtilityLib.h"
 #include "resource.h"
+
 
 #define hookAddr 0x401000;
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
 DWORD dwBaseAddress(0);
+UtilityLib Lib;
 void __declspec(naked)MyFunc()
 {
 	MessageBoxA(0, "hOOK！", "提示", 0);
@@ -32,6 +34,7 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 	{
 		dwProcessId = GetCurrentProcessId(); //获取进程ID
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId); //以全部权限，打开进程，得到进程句柄
+		SetDlgItemTextA(hModule, IDC_STATIC1, "Hello World!");
 		break;
 	}
 	case WM_COMMAND: { //触发的组件ID
@@ -46,28 +49,22 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 			}
 			dwBaseAddress = hookAddr; //指定地址
 			unsigned char ucReadCode[9] = {};//定义缓冲区，用于保存原字节
-			DWORD dwNumberOfBytesRead(0);//用于获取成功读取字节的数量
-			DWORD dwOldProtect(0);//用于保存修改前的内存属性
-			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucReadCode), PAGE_EXECUTE_READWRITE, &dwOldProtect);//修改内存属性，避免内存保护出现读写问题
-			bool bResult = ReadProcessMemory(hProcess, (LPCVOID)dwBaseAddress, &ucReadCode, sizeof(ucReadCode), &dwNumberOfBytesRead); //读取内存
-			if (bResult == false || dwNumberOfBytesRead != sizeof(ucReadCode))
+			bool bResult = Lib.ReadProcessMemory(hProcess, dwBaseAddress, &ucReadCode, sizeof(ucReadCode)); //读取内存
+			if (bResult == false)
 			{
 				MessageBoxA(hModule, "内存读取失败！", "提示", 0);
 				break;
 			}
-			OutputDebugStringA("内存读取ok");	//保存了原字节,开始写hook
-			unsigned char ucHookCode[9] = { 0x60,0x9C,0xB8,0x00,0x00,0x00,0x00,0xFF,0xE0 }; //缓冲区，定义Hook 代码 > pushad - pushfd - mov eax,0x00000000 - jmp eax，即将写入进程的字节
-			DWORD dwMyFunc = (DWORD)&MyFunc; //取要跳转去的子程序地址
-			memcpy_s(&ucHookCode[3], sizeof(DWORD), &dwMyFunc, sizeof(dwMyFunc));//修改HOOK代码参数,将跳转目标改成的自己子程序地址->jmp &MyFunc
-			DWORD dwNumberOfBytesWritten(0);//用于获取成功写入字节的数量
-			bResult = WriteProcessMemory(hProcess, (LPVOID)dwBaseAddress, &ucHookCode, sizeof(ucHookCode), &dwNumberOfBytesWritten); //写入内存
-			VirtualProtect((LPVOID)dwBaseAddress, sizeof(ucHookCode), dwOldProtect, &dwOldProtect);//恢复旧内存属性
-			if (bResult == false || dwNumberOfBytesWritten != sizeof(ucHookCode))
+
+			//Console::WriteLine("AAA,%d", 1, 2, 3);
+			Console::DbgPrintf("AAA,%d,%d,%d", 1, 2, 3);
+
+			bResult = Lib.InlineHook(hProcess, dwBaseAddress, &MyFunc); //读取内存
+			if (bResult == false)
 			{
-				MessageBoxA(hModule, "内存写入失败！", "提示", 0);
+				MessageBoxA(hModule, "hook失败！", "提示", 0);
 				break;
 			}
-
 			MessageBoxA(hModule, "okok！", "提示", 0);
 			break;
 
