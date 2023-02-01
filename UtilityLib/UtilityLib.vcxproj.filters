@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\WeChat_DLL\MemoryLib.cpp">
+    <ClCompile Include="MemoryLib.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\WeChat_DLL\StringLib.cpp">
+    <ClCompile Include="StringLib.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\WeChat_DLL\UtilityLib.h">
+    <ClInclude Include="UtilityLib.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

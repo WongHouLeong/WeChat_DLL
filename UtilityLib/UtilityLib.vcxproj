@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\WeChat_DLL\MemoryLib.cpp" />
-    <ClCompile Include="..\WeChat_DLL\StringLib.cpp" />
+    <ClCompile Include="MemoryLib.cpp" />
+    <ClCompile Include="StringLib.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\WeChat_DLL\UtilityLib.h" />
+    <ClInclude Include="UtilityLib.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
-﻿#include "UtilityLib.h"
+﻿#include "..\UtilityLib\UtilityLib.h"
 #include "resource.h"
 
-#define hookAddr 0x401000;
+#define hookAddr 0x401019;
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
 DWORD dwBaseAddress(0);
@@ -42,15 +42,16 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		case IDOK: { //确认
 			if (hProcess != NULL)
 				Console::DbgPrintf("进程句柄：%X", hProcess);
-			dwBaseAddress = hookAddr; //指定地址
-			unsigned char ucReadCode[20] = {};//定义缓冲区，用于保存原字节
+			dwBaseAddress = hookAddr; //指定HOOK地址
+			unsigned char ucReadCode[12] = {};//定义缓冲区，用于保存原字节
 			bool bResult = Lib.ReadProcessMemory(hProcess, dwBaseAddress, &ucReadCode, sizeof(ucReadCode)); //读取内存		
 			if (bResult == true)
 			{
-				Console::DbgPrintf("读取地址：%X 成功", dwBaseAddress);
-				OutputDebugStringA(Console::GetHexArry(ucReadCode, sizeof(ucReadCode)));
+				char* tmp = Console::HexArr2Str(ucReadCode, sizeof(ucReadCode));
+				Console::DbgPrintf("Hook地址：%x 成功，Hook位置原内容：%s", dwBaseAddress, tmp);
+				delete tmp;//不删除会有内存泄漏
 			}
-			bResult = Lib.InlineHook(hProcess, dwBaseAddress, 20, &MyFunc); //读取内存
+			bResult = Lib.InlineHook(hProcess, dwBaseAddress, sizeof(ucReadCode), &MyFunc); //读取内存
 			if (bResult == true)
 				Console::DbgPrintf("Hook地址：%X 成功", dwBaseAddress);
 			MessageBoxA(hModule, "okok！", "提示", 0);

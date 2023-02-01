@@ -4,8 +4,8 @@
 class Console
 {
 public:
+	static char* HexArr2Str(const unsigned char pszFormat[], unsigned int uSize);
 	static void DbgPrintf(const char* cStr, ...);
-	static char* GetHexArry(const unsigned char* pszFormat, unsigned int uSize);
 };
 class UtilityLib
 {
