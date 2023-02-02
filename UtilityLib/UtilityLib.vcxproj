@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HookLib.cpp" />
     <ClCompile Include="MemoryLib.cpp" />
     <ClCompile Include="StringLib.cpp" />
   </ItemGroup>

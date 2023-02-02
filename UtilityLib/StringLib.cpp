@@ -1,11 +1,11 @@
 #include "UtilityLib.h"
-char* Console::HexArr2Str(const unsigned char pszFormat[], unsigned int uSize)
+char* StringLib::HexArr2Str(const unsigned char pszFormat[], unsigned int uSize)
 {
 	unsigned int uArrSize = 4096;
 	char* szBuf = new char[uArrSize];
 	memset(szBuf, 0, uArrSize);
 	strcat_s(szBuf, uArrSize, "{");
-	for (int i = 0; i < uSize; i++)
+	for (unsigned int i = 0; i < uSize; i++)
 	{
 		if (i != 0)
 			strcat_s(szBuf, uArrSize, ",");
@@ -16,7 +16,7 @@ char* Console::HexArr2Str(const unsigned char pszFormat[], unsigned int uSize)
 	strcat_s(szBuf, uArrSize, "}");
 	return szBuf;
 }
-void Console::DbgPrintf(const char* pszFormat, ...)
+void StringLib::DbgPrintf(const char* pszFormat, ...)
 {
 	char szBuf[4096] = {};
 	va_list argList(0); //va_list 用于保存参数

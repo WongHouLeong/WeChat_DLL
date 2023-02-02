@@ -5,26 +5,31 @@
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
 DWORD dwBaseAddress(0);
-UtilityLib Lib;
+HookLib Hook;
+
 void __declspec(naked)MyFunc()
 {
+#pragma region 执行自己的代码
 	MessageBoxA(0, "hOOK！", "提示", 0);
-	dwBaseAddress = dwBaseAddress + 9;
+	MessageBoxA(0, "hOOKB！", "提示", 0);
+	Hook.InlineResume();
+#pragma endregion
 	__asm//还原现场
 	{
 		popfd
 		popad
 	}
-	__asm//还原现场
+	__asm //运行被hook掉的字节码
 	{
-		popfd
-		popad
+		push 0x80000301
+		push 0x0
 	}
 	__asm //EIP修复
 	{
-		jmp dwBaseAddress  // jmp或ret 退出返回
+		jmp Hook.g_dwResumeAddress;
 	}
 }
+
 
 INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lParam)
 {
@@ -41,22 +46,10 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		{
 		case IDOK: { //确认
 			if (hProcess != NULL)
-				Console::DbgPrintf("进程句柄：%X", hProcess);
+				StringLib::DbgPrintf("进程句柄：%X", hProcess);
 			dwBaseAddress = hookAddr; //指定HOOK地址
-			unsigned char ucReadCode[12] = {};//定义缓冲区，用于保存原字节
-			bool bResult = Lib.ReadProcessMemory(hProcess, dwBaseAddress, &ucReadCode, sizeof(ucReadCode)); //读取内存		
-			if (bResult == true)
-			{
-				char* tmp = Console::HexArr2Str(ucReadCode, sizeof(ucReadCode));
-				Console::DbgPrintf("Hook地址：%x 成功，Hook位置原内容：%s", dwBaseAddress, tmp);
-				delete tmp;//不删除会有内存泄漏
-			}
-			bResult = Lib.InlineHook(hProcess, dwBaseAddress, sizeof(ucReadCode), &MyFunc); //读取内存
-			if (bResult == true)
-				Console::DbgPrintf("Hook地址：%X 成功", dwBaseAddress);
-			MessageBoxA(hModule, "okok！", "提示", 0);
+			Hook.InlineHook(hProcess, dwBaseAddress, 12, &MyFunc);
 			break;
-
 		}
 		case IDCANCEL: {  //取消
 			EndDialog(hModule, 0);
@@ -88,6 +81,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	{
 	case DLL_PROCESS_ATTACH:
 		DialogBoxParamA(hModule, MAKEINTRESOURCE(IDD_DIALOG1), NULL, &DialogFunc, 0);
+		break;
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
