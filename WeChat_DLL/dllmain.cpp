@@ -25,12 +25,8 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		switch (wParam)
 		{
 		case IDOK: { //确认
-
 			DWORD dwBaseAddress = hookAddr; //指定HOOK地址
-			DWORD dwBaseAddress2 = 0x401000; //指定HOOK地址
-			Hook2.Install(hProcess, dwBaseAddress2, 7, &MyFuncA);
 			Hook.Install(hProcess, dwBaseAddress, 7, &MyFuncA);
-	
 			break;
 		}
 		case IDCANCEL: {  //取消

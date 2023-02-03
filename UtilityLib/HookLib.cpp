@@ -1,7 +1,16 @@
 #include "UtilityLib.h"
 
+HANDLE g_hProcess{ 0 };
+DWORD g_dwHookAddress{ 0 };
+DWORD g_dwHookSize{ 0 };
 LPCVOID g_pFuncAddress{ 0 };
+
+unsigned char g_ucRecoverCode[100]{ 0 };
 DWORD g_pRecoverCodeAddr{ 0 }; //”√”⁄ASM
+DWORD g_dwHookFrameworkAddr{ 0 };
+DWORD g_dwUserCodeAddr{ 0 };
+bool g_bIsInstalled = false;
+bool g_bIsPause = false;
 
 void __declspec(naked)HookFramework()
 {
