@@ -1,36 +1,17 @@
 ﻿#include "..\UtilityLib\UtilityLib.h"
 #include "resource.h"
 
-#define hookAddr 0x401019;
+#define hookAddr 0x40101E;
 DWORD dwProcessId(0);
 HANDLE hProcess(0);
 DWORD dwBaseAddress(0);
 HookLib Hook;
 
-void __declspec(naked)MyFunc()
+void MyFuncA()
 {
-#pragma region 执行自己的代码
-	MessageBoxA(0, "hOOK！", "提示", 0);
-	MessageBoxA(0, "hOOKB！", "提示", 0);
-	Hook.InlineResume();
-#pragma endregion
-	__asm//还原现场
-	{
-		popfd
-		popad
-	}
-	__asm //运行被hook掉的字节码
-	{
-		push 0x80000301
-		push 0x0
-	}
-	__asm //EIP修复
-	{
-		jmp Hook.g_dwResumeAddress;
-	}
+	MessageBoxA(0, "XXX！", "提示", 0);
+	//Hook.InlineResume();
 }
-
-
 INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lParam)
 {
 	switch (uType) {
@@ -46,9 +27,9 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		{
 		case IDOK: { //确认
 			if (hProcess != NULL)
-				StringLib::DbgPrintf("进程句柄：%X", hProcess);
+				StringLib::DbgPrintf("进程句柄：%d", hProcess);
 			dwBaseAddress = hookAddr; //指定HOOK地址
-			Hook.InlineHook(hProcess, dwBaseAddress, 12, &MyFunc);
+			Hook.InlineHook(hProcess, dwBaseAddress, 7, &MyFuncA);
 			break;
 		}
 		case IDCANCEL: {  //取消

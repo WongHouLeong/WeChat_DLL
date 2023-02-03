@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <iostream>
+#pragma comment(lib, "Wsock32.lib")
 class MemoryLib
 {
 public:
@@ -16,7 +17,6 @@ public:
 class HookLib
 {
 public:
-	DWORD g_dwResumeAddress{ 0 };
 	bool InlineHook(HANDLE hProcess, DWORD dwHookAddress, DWORD dwHookSize, LPCVOID pFuncAddress);
 	bool InlineResume();
 };
