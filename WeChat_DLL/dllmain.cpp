@@ -2,23 +2,22 @@
 #include "resource.h"
 
 #define hookAddr 0x40101E;
-DWORD dwProcessId(0);
 HANDLE hProcess(0);
-DWORD dwBaseAddress(0);
-HookLib Hook;
+HookLib Hook, Hook2;
 
 void MyFuncA()
 {
-	MessageBoxA(0, "XXX！", "提示", 0);
-	//Hook.InlineResume();
+	MessageBoxA(0, "Hook！", "提示", 0);
 }
 INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lParam)
 {
 	switch (uType) {
 	case WM_INITDIALOG://对话框初始化事件
 	{
-		dwProcessId = GetCurrentProcessId(); //获取进程ID
+		DWORD dwProcessId = GetCurrentProcessId(); //获取进程ID
 		hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId); //以全部权限，打开进程，得到进程句柄
+		if (hProcess != NULL)
+			StringLib::DbgPrintf("进程句柄：%d", hProcess);
 		SetDlgItemTextA(hModule, IDC_STATIC1, "Hello World!");
 		break;
 	}
@@ -26,10 +25,12 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		switch (wParam)
 		{
 		case IDOK: { //确认
-			if (hProcess != NULL)
-				StringLib::DbgPrintf("进程句柄：%d", hProcess);
-			dwBaseAddress = hookAddr; //指定HOOK地址
-			Hook.InlineHook(hProcess, dwBaseAddress, 7, &MyFuncA);
+
+			DWORD dwBaseAddress = hookAddr; //指定HOOK地址
+			DWORD dwBaseAddress2 = 0x401000; //指定HOOK地址
+			Hook2.Install(hProcess, dwBaseAddress2, 7, &MyFuncA);
+			Hook.Install(hProcess, dwBaseAddress, 7, &MyFuncA);
+	
 			break;
 		}
 		case IDCANCEL: {  //取消

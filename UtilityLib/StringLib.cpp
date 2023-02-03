@@ -10,7 +10,7 @@ char* StringLib::HexArr2Str(const unsigned char pszFormat[], unsigned int uSize)
 		if (i != 0)
 			strcat_s(szBuf, uArrSize, ",");
 		char cTmpBuf[5];
-		sprintf_s(cTmpBuf, "0x%02x", pszFormat[i]); //%02x 表示以16进制的格式输出整bai数类型的数值，输出域宽为2，右对齐，不足的用字符0替代。
+		sprintf_s(cTmpBuf, "0x%02X", pszFormat[i]); //%02x 表示以16进制的格式输出整bai数类型的数值，输出域宽为2，右对齐，不足的用字符0替代。
 		strcat_s(szBuf, uArrSize, cTmpBuf);
 	}
 	strcat_s(szBuf, uArrSize, "}");
