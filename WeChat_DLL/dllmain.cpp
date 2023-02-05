@@ -3,12 +3,25 @@
 
 #define hookAddr 0x40101E;
 HANDLE hProcess(0);
-HookLib Hook, Hook2;
+HookLib Hook;
 
-void MyFuncA()
+void __declspec(naked)HookFramework()
 {
+	__asm//保存现场
+	{
+		pushad
+		pushfd
+	}
 	MessageBoxA(0, "Hook！", "提示", 0);
+	__asm//恢复现场+跳转修复
+	{
+		popfd
+		popad
+		jmp Hook.dwRecoverAddr; //跳到恢复区
+	}
 }
+
+
 INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lParam)
 {
 	switch (uType) {
@@ -26,7 +39,7 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 		{
 		case IDOK: { //确认
 			DWORD dwBaseAddress = hookAddr; //指定HOOK地址
-			Hook.Install(hProcess, dwBaseAddress, 7, &MyFuncA);
+			Hook.Install(hProcess, dwBaseAddress, 7, &HookFramework);
 			break;
 		}
 		case IDCANCEL: {  //取消
