@@ -25,9 +25,9 @@ bool HookLib::Install(HANDLE hProcess, DWORD dwHookAddress, DWORD dwHookSize, LP
 	}
 	if (MemoryLib::ReadProcessMemory(g_hProcess, g_dwHookAddress, &g_ucRecoverCode, g_dwHookSize)) //读取HOOK位置内存，保存原字节到g_ucRecoverCode
 	{
-		char* tmp = StringLib::HexArr2Str(g_ucRecoverCode, g_dwHookSize); //打印查看字节内容
-		StringLib::DbgPrintf("Hook地址：0x%08X，原内容：%s", g_dwHookAddress, tmp);
-		delete tmp;//不删除会有内存泄漏
+		char szResult[4096]{ 0 };
+		StringLib::HexArr2Str(g_ucRecoverCode, g_dwHookSize, szResult, sizeof(szResult)); //打印查看字节内容
+		StringLib::DbgPrintf("Hook地址：0x%08X，原内容：%s", g_dwHookAddress, szResult);
 	}
 	else
 	{

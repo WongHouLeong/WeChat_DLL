@@ -13,6 +13,11 @@
   <ItemGroup>
     <ClCompile Include="winmm.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UtilityLib\UtilityLib.vcxproj">
+      <Project>{4f1fa9c6-0dbb-47f3-9dc1-0ff9a6f3d02e}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -48,11 +53,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>winmm</TargetName>
-    <OutDir>C:\Program Files (x86)\Tencent\WeChat</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>winmm</TargetName>
-    <OutDir>C:\Program Files (x86)\Tencent\WeChat</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -10,8 +10,10 @@ public:
 class StringLib
 {
 public:
-	static char* HexArr2Str(const unsigned char pszFormat[], unsigned int uSize);
+	static void HexArr2Str(const unsigned char arrHex[], unsigned int unArrSize, char* szBuf, unsigned int uBufSize);
 	static void DbgPrintf(const char* cStr, ...);
+	static void GetPrintf(const char* pszFormat, char* szBuf, unsigned int uSize, ...);
+	static void GetFileName(const char* lpFilePath, char* szBuf, unsigned int uSize);
 };
 class HookLib
 {
@@ -31,6 +33,6 @@ public:
 	bool Continue();
 	bool Pause();
 	bool IsInstalled();
-	DWORD dwRecoverAddr{ 0 }; //用于ASM
+	DWORD dwRecoverAddr{ 0 }; //用于ASM跳转到类内函数
 };
 

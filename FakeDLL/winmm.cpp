@@ -1,7 +1,5 @@
-#include <windows.h>
-#include <Shlwapi.h>
-#pragma comment( lib, "Shlwapi.lib")
-static HMODULE g_hRealModule = NULL;
+#include "..\UtilityLib\UtilityLib.h"
+HMODULE g_hRealModule(NULL);
 #pragma region MyRegion
 #pragma comment(linker, "/EXPORT:Noname2=_AheadLib_Unnamed2,@2,NONAME")
 #pragma comment(linker, "/EXPORT:mciExecute=_AheadLib_mciExecute,@3")
@@ -390,1283 +388,1233 @@ PVOID pfnAheadLib_waveOutWrite;
 PVOID pfnAheadLib_wid32Message;
 PVOID pfnAheadLib_wod32Message;
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_Unnamed2(void)
+extern "C" __declspec(naked) void  AheadLib_Unnamed2(void)
 {
 	__asm jmp pfnAheadLib_Unnamed2;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciExecute(void)
+extern "C" __declspec(naked) void  AheadLib_mciExecute(void)
 {
 	__asm jmp pfnAheadLib_mciExecute;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_CloseDriver(void)
+extern "C" __declspec(naked) void  AheadLib_CloseDriver(void)
 {
 	__asm jmp pfnAheadLib_CloseDriver;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_DefDriverProc(void)
+extern "C" __declspec(naked) void  AheadLib_DefDriverProc(void)
 {
 	__asm jmp pfnAheadLib_DefDriverProc;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_DriverCallback(void)
+extern "C" __declspec(naked) void  AheadLib_DriverCallback(void)
 {
 	__asm jmp pfnAheadLib_DriverCallback;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_DrvGetModuleHandle(void)
+extern "C" __declspec(naked) void  AheadLib_DrvGetModuleHandle(void)
 {
 	__asm jmp pfnAheadLib_DrvGetModuleHandle;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_GetDriverModuleHandle(void)
+extern "C" __declspec(naked) void  AheadLib_GetDriverModuleHandle(void)
 {
 	__asm jmp pfnAheadLib_GetDriverModuleHandle;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_NotifyCallbackData(void)
+extern "C" __declspec(naked) void  AheadLib_NotifyCallbackData(void)
 {
 	__asm jmp pfnAheadLib_NotifyCallbackData;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_OpenDriver(void)
+extern "C" __declspec(naked) void  AheadLib_OpenDriver(void)
 {
 	__asm jmp pfnAheadLib_OpenDriver;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_PlaySound(void)
+extern "C" __declspec(naked) void  AheadLib_PlaySound(void)
 {
 	__asm jmp pfnAheadLib_PlaySound;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_PlaySoundA(void)
+extern "C" __declspec(naked) void  AheadLib_PlaySoundA(void)
 {
 	__asm jmp pfnAheadLib_PlaySoundA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_PlaySoundW(void)
+extern "C" __declspec(naked) void  AheadLib_PlaySoundW(void)
 {
 	__asm jmp pfnAheadLib_PlaySoundW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_SendDriverMessage(void)
+extern "C" __declspec(naked) void  AheadLib_SendDriverMessage(void)
 {
 	__asm jmp pfnAheadLib_SendDriverMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_WOW32DriverCallback(void)
+extern "C" __declspec(naked) void  AheadLib_WOW32DriverCallback(void)
 {
 	__asm jmp pfnAheadLib_WOW32DriverCallback;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_WOW32ResolveMultiMediaHandle(void)
+extern "C" __declspec(naked) void  AheadLib_WOW32ResolveMultiMediaHandle(void)
 {
 	__asm jmp pfnAheadLib_WOW32ResolveMultiMediaHandle;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_WOWAppExit(void)
+extern "C" __declspec(naked) void  AheadLib_WOWAppExit(void)
 {
 	__asm jmp pfnAheadLib_WOWAppExit;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_aux32Message(void)
+extern "C" __declspec(naked) void  AheadLib_aux32Message(void)
 {
 	__asm jmp pfnAheadLib_aux32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_auxGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_auxGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_auxGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_auxGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_auxGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_auxGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxGetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_auxGetVolume(void)
 {
 	__asm jmp pfnAheadLib_auxGetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxOutMessage(void)
+extern "C" __declspec(naked) void  AheadLib_auxOutMessage(void)
 {
 	__asm jmp pfnAheadLib_auxOutMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_auxSetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_auxSetVolume(void)
 {
 	__asm jmp pfnAheadLib_auxSetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joy32Message(void)
+extern "C" __declspec(naked) void  AheadLib_joy32Message(void)
 {
 	__asm jmp pfnAheadLib_joy32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyConfigChanged(void)
+extern "C" __declspec(naked) void  AheadLib_joyConfigChanged(void)
 {
 	__asm jmp pfnAheadLib_joyConfigChanged;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_joyGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_joyGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_joyGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetPos(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetPos(void)
 {
 	__asm jmp pfnAheadLib_joyGetPos;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetPosEx(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetPosEx(void)
 {
 	__asm jmp pfnAheadLib_joyGetPosEx;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyGetThreshold(void)
+extern "C" __declspec(naked) void  AheadLib_joyGetThreshold(void)
 {
 	__asm jmp pfnAheadLib_joyGetThreshold;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joyReleaseCapture(void)
+extern "C" __declspec(naked) void  AheadLib_joyReleaseCapture(void)
 {
 	__asm jmp pfnAheadLib_joyReleaseCapture;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joySetCapture(void)
+extern "C" __declspec(naked) void  AheadLib_joySetCapture(void)
 {
 	__asm jmp pfnAheadLib_joySetCapture;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_joySetThreshold(void)
+extern "C" __declspec(naked) void  AheadLib_joySetThreshold(void)
 {
 	__asm jmp pfnAheadLib_joySetThreshold;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mci32Message(void)
+extern "C" __declspec(naked) void  AheadLib_mci32Message(void)
 {
 	__asm jmp pfnAheadLib_mci32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciDriverNotify(void)
+extern "C" __declspec(naked) void  AheadLib_mciDriverNotify(void)
 {
 	__asm jmp pfnAheadLib_mciDriverNotify;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciDriverYield(void)
+extern "C" __declspec(naked) void  AheadLib_mciDriverYield(void)
 {
 	__asm jmp pfnAheadLib_mciDriverYield;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciFreeCommandResource(void)
+extern "C" __declspec(naked) void  AheadLib_mciFreeCommandResource(void)
 {
 	__asm jmp pfnAheadLib_mciFreeCommandResource;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetCreatorTask(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetCreatorTask(void)
 {
 	__asm jmp pfnAheadLib_mciGetCreatorTask;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetDeviceIDA(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetDeviceIDA(void)
 {
 	__asm jmp pfnAheadLib_mciGetDeviceIDA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetDeviceIDFromElementIDA(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetDeviceIDFromElementIDA(void)
 {
 	__asm jmp pfnAheadLib_mciGetDeviceIDFromElementIDA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetDeviceIDFromElementIDW(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetDeviceIDFromElementIDW(void)
 {
 	__asm jmp pfnAheadLib_mciGetDeviceIDFromElementIDW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetDeviceIDW(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetDeviceIDW(void)
 {
 	__asm jmp pfnAheadLib_mciGetDeviceIDW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetDriverData(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetDriverData(void)
 {
 	__asm jmp pfnAheadLib_mciGetDriverData;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetErrorStringA(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetErrorStringA(void)
 {
 	__asm jmp pfnAheadLib_mciGetErrorStringA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetErrorStringW(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetErrorStringW(void)
 {
 	__asm jmp pfnAheadLib_mciGetErrorStringW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciGetYieldProc(void)
+extern "C" __declspec(naked) void  AheadLib_mciGetYieldProc(void)
 {
 	__asm jmp pfnAheadLib_mciGetYieldProc;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciLoadCommandResource(void)
+extern "C" __declspec(naked) void  AheadLib_mciLoadCommandResource(void)
 {
 	__asm jmp pfnAheadLib_mciLoadCommandResource;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSendCommandA(void)
+extern "C" __declspec(naked) void  AheadLib_mciSendCommandA(void)
 {
 	__asm jmp pfnAheadLib_mciSendCommandA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSendCommandW(void)
+extern "C" __declspec(naked) void  AheadLib_mciSendCommandW(void)
 {
 	__asm jmp pfnAheadLib_mciSendCommandW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSendStringA(void)
+extern "C" __declspec(naked) void  AheadLib_mciSendStringA(void)
 {
 	__asm jmp pfnAheadLib_mciSendStringA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSendStringW(void)
+extern "C" __declspec(naked) void  AheadLib_mciSendStringW(void)
 {
 	__asm jmp pfnAheadLib_mciSendStringW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSetDriverData(void)
+extern "C" __declspec(naked) void  AheadLib_mciSetDriverData(void)
 {
 	__asm jmp pfnAheadLib_mciSetDriverData;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mciSetYieldProc(void)
+extern "C" __declspec(naked) void  AheadLib_mciSetYieldProc(void)
 {
 	__asm jmp pfnAheadLib_mciSetYieldProc;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mid32Message(void)
+extern "C" __declspec(naked) void  AheadLib_mid32Message(void)
 {
 	__asm jmp pfnAheadLib_mid32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiConnect(void)
+extern "C" __declspec(naked) void  AheadLib_midiConnect(void)
 {
 	__asm jmp pfnAheadLib_midiConnect;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiDisconnect(void)
+extern "C" __declspec(naked) void  AheadLib_midiDisconnect(void)
 {
 	__asm jmp pfnAheadLib_midiDisconnect;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInAddBuffer(void)
+extern "C" __declspec(naked) void  AheadLib_midiInAddBuffer(void)
 {
 	__asm jmp pfnAheadLib_midiInAddBuffer;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInClose(void)
+extern "C" __declspec(naked) void  AheadLib_midiInClose(void)
 {
 	__asm jmp pfnAheadLib_midiInClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_midiInGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_midiInGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetErrorTextA(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetErrorTextA(void)
 {
 	__asm jmp pfnAheadLib_midiInGetErrorTextA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetErrorTextW(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetErrorTextW(void)
 {
 	__asm jmp pfnAheadLib_midiInGetErrorTextW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetID(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetID(void)
 {
 	__asm jmp pfnAheadLib_midiInGetID;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_midiInGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_midiInGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInMessage(void)
+extern "C" __declspec(naked) void  AheadLib_midiInMessage(void)
 {
 	__asm jmp pfnAheadLib_midiInMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInOpen(void)
+extern "C" __declspec(naked) void  AheadLib_midiInOpen(void)
 {
 	__asm jmp pfnAheadLib_midiInOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInPrepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_midiInPrepareHeader(void)
 {
 	__asm jmp pfnAheadLib_midiInPrepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInReset(void)
+extern "C" __declspec(naked) void  AheadLib_midiInReset(void)
 {
 	__asm jmp pfnAheadLib_midiInReset;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInStart(void)
+extern "C" __declspec(naked) void  AheadLib_midiInStart(void)
 {
 	__asm jmp pfnAheadLib_midiInStart;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInStop(void)
+extern "C" __declspec(naked) void  AheadLib_midiInStop(void)
 {
 	__asm jmp pfnAheadLib_midiInStop;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiInUnprepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_midiInUnprepareHeader(void)
 {
 	__asm jmp pfnAheadLib_midiInUnprepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutCacheDrumPatches(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutCacheDrumPatches(void)
 {
 	__asm jmp pfnAheadLib_midiOutCacheDrumPatches;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutCachePatches(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutCachePatches(void)
 {
 	__asm jmp pfnAheadLib_midiOutCachePatches;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutClose(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutClose(void)
 {
 	__asm jmp pfnAheadLib_midiOutClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetErrorTextA(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetErrorTextA(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetErrorTextA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetErrorTextW(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetErrorTextW(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetErrorTextW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetID(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetID(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetID;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutGetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutGetVolume(void)
 {
 	__asm jmp pfnAheadLib_midiOutGetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutLongMsg(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutLongMsg(void)
 {
 	__asm jmp pfnAheadLib_midiOutLongMsg;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutMessage(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutMessage(void)
 {
 	__asm jmp pfnAheadLib_midiOutMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutOpen(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutOpen(void)
 {
 	__asm jmp pfnAheadLib_midiOutOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutPrepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutPrepareHeader(void)
 {
 	__asm jmp pfnAheadLib_midiOutPrepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutReset(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutReset(void)
 {
 	__asm jmp pfnAheadLib_midiOutReset;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutSetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutSetVolume(void)
 {
 	__asm jmp pfnAheadLib_midiOutSetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutShortMsg(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutShortMsg(void)
 {
 	__asm jmp pfnAheadLib_midiOutShortMsg;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiOutUnprepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_midiOutUnprepareHeader(void)
 {
 	__asm jmp pfnAheadLib_midiOutUnprepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamClose(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamClose(void)
 {
 	__asm jmp pfnAheadLib_midiStreamClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamOpen(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamOpen(void)
 {
 	__asm jmp pfnAheadLib_midiStreamOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamOut(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamOut(void)
 {
 	__asm jmp pfnAheadLib_midiStreamOut;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamPause(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamPause(void)
 {
 	__asm jmp pfnAheadLib_midiStreamPause;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamPosition(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamPosition(void)
 {
 	__asm jmp pfnAheadLib_midiStreamPosition;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamProperty(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamProperty(void)
 {
 	__asm jmp pfnAheadLib_midiStreamProperty;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamRestart(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamRestart(void)
 {
 	__asm jmp pfnAheadLib_midiStreamRestart;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_midiStreamStop(void)
+extern "C" __declspec(naked) void  AheadLib_midiStreamStop(void)
 {
 	__asm jmp pfnAheadLib_midiStreamStop;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerClose(void)
+extern "C" __declspec(naked) void  AheadLib_mixerClose(void)
 {
 	__asm jmp pfnAheadLib_mixerClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetControlDetailsA(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetControlDetailsA(void)
 {
 	__asm jmp pfnAheadLib_mixerGetControlDetailsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetControlDetailsW(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetControlDetailsW(void)
 {
 	__asm jmp pfnAheadLib_mixerGetControlDetailsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_mixerGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_mixerGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetID(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetID(void)
 {
 	__asm jmp pfnAheadLib_mixerGetID;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetLineControlsA(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetLineControlsA(void)
 {
 	__asm jmp pfnAheadLib_mixerGetLineControlsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetLineControlsW(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetLineControlsW(void)
 {
 	__asm jmp pfnAheadLib_mixerGetLineControlsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetLineInfoA(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetLineInfoA(void)
 {
 	__asm jmp pfnAheadLib_mixerGetLineInfoA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetLineInfoW(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetLineInfoW(void)
 {
 	__asm jmp pfnAheadLib_mixerGetLineInfoW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_mixerGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_mixerGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerMessage(void)
+extern "C" __declspec(naked) void  AheadLib_mixerMessage(void)
 {
 	__asm jmp pfnAheadLib_mixerMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerOpen(void)
+extern "C" __declspec(naked) void  AheadLib_mixerOpen(void)
 {
 	__asm jmp pfnAheadLib_mixerOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mixerSetControlDetails(void)
+extern "C" __declspec(naked) void  AheadLib_mixerSetControlDetails(void)
 {
 	__asm jmp pfnAheadLib_mixerSetControlDetails;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmDrvInstall(void)
+extern "C" __declspec(naked) void  AheadLib_mmDrvInstall(void)
 {
 	__asm jmp pfnAheadLib_mmDrvInstall;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmGetCurrentTask(void)
+extern "C" __declspec(naked) void  AheadLib_mmGetCurrentTask(void)
 {
 	__asm jmp pfnAheadLib_mmGetCurrentTask;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmTaskBlock(void)
+extern "C" __declspec(naked) void  AheadLib_mmTaskBlock(void)
 {
 	__asm jmp pfnAheadLib_mmTaskBlock;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmTaskCreate(void)
+extern "C" __declspec(naked) void  AheadLib_mmTaskCreate(void)
 {
 	__asm jmp pfnAheadLib_mmTaskCreate;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmTaskSignal(void)
+extern "C" __declspec(naked) void  AheadLib_mmTaskSignal(void)
 {
 	__asm jmp pfnAheadLib_mmTaskSignal;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmTaskYield(void)
+extern "C" __declspec(naked) void  AheadLib_mmTaskYield(void)
 {
 	__asm jmp pfnAheadLib_mmTaskYield;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioAdvance(void)
+extern "C" __declspec(naked) void  AheadLib_mmioAdvance(void)
 {
 	__asm jmp pfnAheadLib_mmioAdvance;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioAscend(void)
+extern "C" __declspec(naked) void  AheadLib_mmioAscend(void)
 {
 	__asm jmp pfnAheadLib_mmioAscend;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioClose(void)
+extern "C" __declspec(naked) void  AheadLib_mmioClose(void)
 {
 	__asm jmp pfnAheadLib_mmioClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioCreateChunk(void)
+extern "C" __declspec(naked) void  AheadLib_mmioCreateChunk(void)
 {
 	__asm jmp pfnAheadLib_mmioCreateChunk;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioDescend(void)
+extern "C" __declspec(naked) void  AheadLib_mmioDescend(void)
 {
 	__asm jmp pfnAheadLib_mmioDescend;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioFlush(void)
+extern "C" __declspec(naked) void  AheadLib_mmioFlush(void)
 {
 	__asm jmp pfnAheadLib_mmioFlush;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioGetInfo(void)
+extern "C" __declspec(naked) void  AheadLib_mmioGetInfo(void)
 {
 	__asm jmp pfnAheadLib_mmioGetInfo;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioInstallIOProcA(void)
+extern "C" __declspec(naked) void  AheadLib_mmioInstallIOProcA(void)
 {
 	__asm jmp pfnAheadLib_mmioInstallIOProcA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioInstallIOProcW(void)
+extern "C" __declspec(naked) void  AheadLib_mmioInstallIOProcW(void)
 {
 	__asm jmp pfnAheadLib_mmioInstallIOProcW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioOpenA(void)
+extern "C" __declspec(naked) void  AheadLib_mmioOpenA(void)
 {
 	__asm jmp pfnAheadLib_mmioOpenA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioOpenW(void)
+extern "C" __declspec(naked) void  AheadLib_mmioOpenW(void)
 {
 	__asm jmp pfnAheadLib_mmioOpenW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioRead(void)
+extern "C" __declspec(naked) void  AheadLib_mmioRead(void)
 {
 	__asm jmp pfnAheadLib_mmioRead;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioRenameA(void)
+extern "C" __declspec(naked) void  AheadLib_mmioRenameA(void)
 {
 	__asm jmp pfnAheadLib_mmioRenameA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioRenameW(void)
+extern "C" __declspec(naked) void  AheadLib_mmioRenameW(void)
 {
 	__asm jmp pfnAheadLib_mmioRenameW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioSeek(void)
+extern "C" __declspec(naked) void  AheadLib_mmioSeek(void)
 {
 	__asm jmp pfnAheadLib_mmioSeek;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioSendMessage(void)
+extern "C" __declspec(naked) void  AheadLib_mmioSendMessage(void)
 {
 	__asm jmp pfnAheadLib_mmioSendMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioSetBuffer(void)
+extern "C" __declspec(naked) void  AheadLib_mmioSetBuffer(void)
 {
 	__asm jmp pfnAheadLib_mmioSetBuffer;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioSetInfo(void)
+extern "C" __declspec(naked) void  AheadLib_mmioSetInfo(void)
 {
 	__asm jmp pfnAheadLib_mmioSetInfo;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioStringToFOURCCA(void)
+extern "C" __declspec(naked) void  AheadLib_mmioStringToFOURCCA(void)
 {
 	__asm jmp pfnAheadLib_mmioStringToFOURCCA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioStringToFOURCCW(void)
+extern "C" __declspec(naked) void  AheadLib_mmioStringToFOURCCW(void)
 {
 	__asm jmp pfnAheadLib_mmioStringToFOURCCW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmioWrite(void)
+extern "C" __declspec(naked) void  AheadLib_mmioWrite(void)
 {
 	__asm jmp pfnAheadLib_mmioWrite;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mmsystemGetVersion(void)
+extern "C" __declspec(naked) void  AheadLib_mmsystemGetVersion(void)
 {
 	__asm jmp pfnAheadLib_mmsystemGetVersion;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mod32Message(void)
+extern "C" __declspec(naked) void  AheadLib_mod32Message(void)
 {
 	__asm jmp pfnAheadLib_mod32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_mxd32Message(void)
+extern "C" __declspec(naked) void  AheadLib_mxd32Message(void)
 {
 	__asm jmp pfnAheadLib_mxd32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_sndPlaySoundA(void)
+extern "C" __declspec(naked) void  AheadLib_sndPlaySoundA(void)
 {
 	__asm jmp pfnAheadLib_sndPlaySoundA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_sndPlaySoundW(void)
+extern "C" __declspec(naked) void  AheadLib_sndPlaySoundW(void)
 {
 	__asm jmp pfnAheadLib_sndPlaySoundW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_tid32Message(void)
+extern "C" __declspec(naked) void  AheadLib_tid32Message(void)
 {
 	__asm jmp pfnAheadLib_tid32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeBeginPeriod(void)
+extern "C" __declspec(naked) void  AheadLib_timeBeginPeriod(void)
 {
 	__asm jmp pfnAheadLib_timeBeginPeriod;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeEndPeriod(void)
+extern "C" __declspec(naked) void  AheadLib_timeEndPeriod(void)
 {
 	__asm jmp pfnAheadLib_timeEndPeriod;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeGetDevCaps(void)
+extern "C" __declspec(naked) void  AheadLib_timeGetDevCaps(void)
 {
 	__asm jmp pfnAheadLib_timeGetDevCaps;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeGetSystemTime(void)
+extern "C" __declspec(naked) void  AheadLib_timeGetSystemTime(void)
 {
 	__asm jmp pfnAheadLib_timeGetSystemTime;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeGetTime(void)
+extern "C" __declspec(naked) void  AheadLib_timeGetTime(void)
 {
 	__asm jmp pfnAheadLib_timeGetTime;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeKillEvent(void)
+extern "C" __declspec(naked) void  AheadLib_timeKillEvent(void)
 {
 	__asm jmp pfnAheadLib_timeKillEvent;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_timeSetEvent(void)
+extern "C" __declspec(naked) void  AheadLib_timeSetEvent(void)
 {
 	__asm jmp pfnAheadLib_timeSetEvent;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInAddBuffer(void)
+extern "C" __declspec(naked) void  AheadLib_waveInAddBuffer(void)
 {
 	__asm jmp pfnAheadLib_waveInAddBuffer;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInClose(void)
+extern "C" __declspec(naked) void  AheadLib_waveInClose(void)
 {
 	__asm jmp pfnAheadLib_waveInClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_waveInGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_waveInGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetErrorTextA(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetErrorTextA(void)
 {
 	__asm jmp pfnAheadLib_waveInGetErrorTextA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetErrorTextW(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetErrorTextW(void)
 {
 	__asm jmp pfnAheadLib_waveInGetErrorTextW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetID(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetID(void)
 {
 	__asm jmp pfnAheadLib_waveInGetID;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_waveInGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInGetPosition(void)
+extern "C" __declspec(naked) void  AheadLib_waveInGetPosition(void)
 {
 	__asm jmp pfnAheadLib_waveInGetPosition;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInMessage(void)
+extern "C" __declspec(naked) void  AheadLib_waveInMessage(void)
 {
 	__asm jmp pfnAheadLib_waveInMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInOpen(void)
+extern "C" __declspec(naked) void  AheadLib_waveInOpen(void)
 {
 	__asm jmp pfnAheadLib_waveInOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInPrepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_waveInPrepareHeader(void)
 {
 	__asm jmp pfnAheadLib_waveInPrepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInReset(void)
+extern "C" __declspec(naked) void  AheadLib_waveInReset(void)
 {
 	__asm jmp pfnAheadLib_waveInReset;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInStart(void)
+extern "C" __declspec(naked) void  AheadLib_waveInStart(void)
 {
 	__asm jmp pfnAheadLib_waveInStart;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInStop(void)
+extern "C" __declspec(naked) void  AheadLib_waveInStop(void)
 {
 	__asm jmp pfnAheadLib_waveInStop;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveInUnprepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_waveInUnprepareHeader(void)
 {
 	__asm jmp pfnAheadLib_waveInUnprepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutBreakLoop(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutBreakLoop(void)
 {
 	__asm jmp pfnAheadLib_waveOutBreakLoop;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutClose(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutClose(void)
 {
 	__asm jmp pfnAheadLib_waveOutClose;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetDevCapsA(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetDevCapsA(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetDevCapsA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetDevCapsW(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetDevCapsW(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetDevCapsW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetErrorTextA(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetErrorTextA(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetErrorTextA;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetErrorTextW(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetErrorTextW(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetErrorTextW;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetID(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetID(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetID;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetNumDevs(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetNumDevs(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetNumDevs;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetPitch(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetPitch(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetPitch;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetPlaybackRate(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetPlaybackRate(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetPlaybackRate;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetPosition(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetPosition(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetPosition;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutGetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutGetVolume(void)
 {
 	__asm jmp pfnAheadLib_waveOutGetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutMessage(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutMessage(void)
 {
 	__asm jmp pfnAheadLib_waveOutMessage;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutOpen(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutOpen(void)
 {
 	__asm jmp pfnAheadLib_waveOutOpen;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutPause(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutPause(void)
 {
 	__asm jmp pfnAheadLib_waveOutPause;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutPrepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutPrepareHeader(void)
 {
 	__asm jmp pfnAheadLib_waveOutPrepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutReset(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutReset(void)
 {
 	__asm jmp pfnAheadLib_waveOutReset;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutRestart(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutRestart(void)
 {
 	__asm jmp pfnAheadLib_waveOutRestart;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutSetPitch(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutSetPitch(void)
 {
 	__asm jmp pfnAheadLib_waveOutSetPitch;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutSetPlaybackRate(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutSetPlaybackRate(void)
 {
 	__asm jmp pfnAheadLib_waveOutSetPlaybackRate;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutSetVolume(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutSetVolume(void)
 {
 	__asm jmp pfnAheadLib_waveOutSetVolume;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutUnprepareHeader(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutUnprepareHeader(void)
 {
 	__asm jmp pfnAheadLib_waveOutUnprepareHeader;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_waveOutWrite(void)
+extern "C" __declspec(naked) void  AheadLib_waveOutWrite(void)
 {
 	__asm jmp pfnAheadLib_waveOutWrite;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_wid32Message(void)
+extern "C" __declspec(naked) void  AheadLib_wid32Message(void)
 {
 	__asm jmp pfnAheadLib_wid32Message;
 }
 
-EXTERN_C __declspec(naked) void __cdecl AheadLib_wod32Message(void)
+extern "C" __declspec(naked) void  AheadLib_wod32Message(void)
 {
 	__asm jmp pfnAheadLib_wod32Message;
 }
-FARPROC WINAPI GetAddress(PCSTR pszProcName)
+FARPROC GetRealApiAddress(LPCSTR lpProcName)
 {
-	FARPROC fpAddress;
-	CHAR szProcName[64];
-	TCHAR tzTemp[MAX_PATH];
-
-	fpAddress = GetProcAddress(g_hRealModule, pszProcName);
+	FARPROC fpAddress = GetProcAddress(g_hRealModule, lpProcName);
 	if (fpAddress == NULL)
 	{
-		if (HIWORD(pszProcName) == 0)
-		{
-			wsprintfA(szProcName, "#%d", pszProcName);
-			pszProcName = szProcName;
-		}
-
-		wsprintf(tzTemp, TEXT("无法找到函数 %hs,程序无法正常运行"), pszProcName);
-		MessageBox(NULL, tzTemp, TEXT("AheadLib"), MB_ICONSTOP);
-		ExitProcess(-2);
+		char szResult[MAX_PATH];
+		StringLib::GetPrintf("函数异常：%s", szResult, MAX_PATH, lpProcName);
+		MessageBoxA(NULL, szResult, "AheadLib", MB_ICONSTOP);
+		ExitProcess(0);
 	}
 	return fpAddress;
 }
-
-BOOL WINAPI Init()
+bool Init()
 {
-	pfnAheadLib_Unnamed2 = GetAddress(MAKEINTRESOURCEA(2));
-	pfnAheadLib_mciExecute = GetAddress("mciExecute");
-	pfnAheadLib_CloseDriver = GetAddress("CloseDriver");
-	pfnAheadLib_DefDriverProc = GetAddress("DefDriverProc");
-	pfnAheadLib_DriverCallback = GetAddress("DriverCallback");
-	pfnAheadLib_DrvGetModuleHandle = GetAddress("DrvGetModuleHandle");
-	pfnAheadLib_GetDriverModuleHandle = GetAddress("GetDriverModuleHandle");
-	pfnAheadLib_NotifyCallbackData = GetAddress("NotifyCallbackData");
-	pfnAheadLib_OpenDriver = GetAddress("OpenDriver");
-	pfnAheadLib_PlaySound = GetAddress("PlaySound");
-	pfnAheadLib_PlaySoundA = GetAddress("PlaySoundA");
-	pfnAheadLib_PlaySoundW = GetAddress("PlaySoundW");
-	pfnAheadLib_SendDriverMessage = GetAddress("SendDriverMessage");
-	pfnAheadLib_WOW32DriverCallback = GetAddress("WOW32DriverCallback");
-	pfnAheadLib_WOW32ResolveMultiMediaHandle = GetAddress("WOW32ResolveMultiMediaHandle");
-	pfnAheadLib_WOWAppExit = GetAddress("WOWAppExit");
-	pfnAheadLib_aux32Message = GetAddress("aux32Message");
-	pfnAheadLib_auxGetDevCapsA = GetAddress("auxGetDevCapsA");
-	pfnAheadLib_auxGetDevCapsW = GetAddress("auxGetDevCapsW");
-	pfnAheadLib_auxGetNumDevs = GetAddress("auxGetNumDevs");
-	pfnAheadLib_auxGetVolume = GetAddress("auxGetVolume");
-	pfnAheadLib_auxOutMessage = GetAddress("auxOutMessage");
-	pfnAheadLib_auxSetVolume = GetAddress("auxSetVolume");
-	pfnAheadLib_joy32Message = GetAddress("joy32Message");
-	pfnAheadLib_joyConfigChanged = GetAddress("joyConfigChanged");
-	pfnAheadLib_joyGetDevCapsA = GetAddress("joyGetDevCapsA");
-	pfnAheadLib_joyGetDevCapsW = GetAddress("joyGetDevCapsW");
-	pfnAheadLib_joyGetNumDevs = GetAddress("joyGetNumDevs");
-	pfnAheadLib_joyGetPos = GetAddress("joyGetPos");
-	pfnAheadLib_joyGetPosEx = GetAddress("joyGetPosEx");
-	pfnAheadLib_joyGetThreshold = GetAddress("joyGetThreshold");
-	pfnAheadLib_joyReleaseCapture = GetAddress("joyReleaseCapture");
-	pfnAheadLib_joySetCapture = GetAddress("joySetCapture");
-	pfnAheadLib_joySetThreshold = GetAddress("joySetThreshold");
-	pfnAheadLib_mci32Message = GetAddress("mci32Message");
-	pfnAheadLib_mciDriverNotify = GetAddress("mciDriverNotify");
-	pfnAheadLib_mciDriverYield = GetAddress("mciDriverYield");
-	pfnAheadLib_mciFreeCommandResource = GetAddress("mciFreeCommandResource");
-	pfnAheadLib_mciGetCreatorTask = GetAddress("mciGetCreatorTask");
-	pfnAheadLib_mciGetDeviceIDA = GetAddress("mciGetDeviceIDA");
-	pfnAheadLib_mciGetDeviceIDFromElementIDA = GetAddress("mciGetDeviceIDFromElementIDA");
-	pfnAheadLib_mciGetDeviceIDFromElementIDW = GetAddress("mciGetDeviceIDFromElementIDW");
-	pfnAheadLib_mciGetDeviceIDW = GetAddress("mciGetDeviceIDW");
-	pfnAheadLib_mciGetDriverData = GetAddress("mciGetDriverData");
-	pfnAheadLib_mciGetErrorStringA = GetAddress("mciGetErrorStringA");
-	pfnAheadLib_mciGetErrorStringW = GetAddress("mciGetErrorStringW");
-	pfnAheadLib_mciGetYieldProc = GetAddress("mciGetYieldProc");
-	pfnAheadLib_mciLoadCommandResource = GetAddress("mciLoadCommandResource");
-	pfnAheadLib_mciSendCommandA = GetAddress("mciSendCommandA");
-	pfnAheadLib_mciSendCommandW = GetAddress("mciSendCommandW");
-	pfnAheadLib_mciSendStringA = GetAddress("mciSendStringA");
-	pfnAheadLib_mciSendStringW = GetAddress("mciSendStringW");
-	pfnAheadLib_mciSetDriverData = GetAddress("mciSetDriverData");
-	pfnAheadLib_mciSetYieldProc = GetAddress("mciSetYieldProc");
-	pfnAheadLib_mid32Message = GetAddress("mid32Message");
-	pfnAheadLib_midiConnect = GetAddress("midiConnect");
-	pfnAheadLib_midiDisconnect = GetAddress("midiDisconnect");
-	pfnAheadLib_midiInAddBuffer = GetAddress("midiInAddBuffer");
-	pfnAheadLib_midiInClose = GetAddress("midiInClose");
-	pfnAheadLib_midiInGetDevCapsA = GetAddress("midiInGetDevCapsA");
-	pfnAheadLib_midiInGetDevCapsW = GetAddress("midiInGetDevCapsW");
-	pfnAheadLib_midiInGetErrorTextA = GetAddress("midiInGetErrorTextA");
-	pfnAheadLib_midiInGetErrorTextW = GetAddress("midiInGetErrorTextW");
-	pfnAheadLib_midiInGetID = GetAddress("midiInGetID");
-	pfnAheadLib_midiInGetNumDevs = GetAddress("midiInGetNumDevs");
-	pfnAheadLib_midiInMessage = GetAddress("midiInMessage");
-	pfnAheadLib_midiInOpen = GetAddress("midiInOpen");
-	pfnAheadLib_midiInPrepareHeader = GetAddress("midiInPrepareHeader");
-	pfnAheadLib_midiInReset = GetAddress("midiInReset");
-	pfnAheadLib_midiInStart = GetAddress("midiInStart");
-	pfnAheadLib_midiInStop = GetAddress("midiInStop");
-	pfnAheadLib_midiInUnprepareHeader = GetAddress("midiInUnprepareHeader");
-	pfnAheadLib_midiOutCacheDrumPatches = GetAddress("midiOutCacheDrumPatches");
-	pfnAheadLib_midiOutCachePatches = GetAddress("midiOutCachePatches");
-	pfnAheadLib_midiOutClose = GetAddress("midiOutClose");
-	pfnAheadLib_midiOutGetDevCapsA = GetAddress("midiOutGetDevCapsA");
-	pfnAheadLib_midiOutGetDevCapsW = GetAddress("midiOutGetDevCapsW");
-	pfnAheadLib_midiOutGetErrorTextA = GetAddress("midiOutGetErrorTextA");
-	pfnAheadLib_midiOutGetErrorTextW = GetAddress("midiOutGetErrorTextW");
-	pfnAheadLib_midiOutGetID = GetAddress("midiOutGetID");
-	pfnAheadLib_midiOutGetNumDevs = GetAddress("midiOutGetNumDevs");
-	pfnAheadLib_midiOutGetVolume = GetAddress("midiOutGetVolume");
-	pfnAheadLib_midiOutLongMsg = GetAddress("midiOutLongMsg");
-	pfnAheadLib_midiOutMessage = GetAddress("midiOutMessage");
-	pfnAheadLib_midiOutOpen = GetAddress("midiOutOpen");
-	pfnAheadLib_midiOutPrepareHeader = GetAddress("midiOutPrepareHeader");
-	pfnAheadLib_midiOutReset = GetAddress("midiOutReset");
-	pfnAheadLib_midiOutSetVolume = GetAddress("midiOutSetVolume");
-	pfnAheadLib_midiOutShortMsg = GetAddress("midiOutShortMsg");
-	pfnAheadLib_midiOutUnprepareHeader = GetAddress("midiOutUnprepareHeader");
-	pfnAheadLib_midiStreamClose = GetAddress("midiStreamClose");
-	pfnAheadLib_midiStreamOpen = GetAddress("midiStreamOpen");
-	pfnAheadLib_midiStreamOut = GetAddress("midiStreamOut");
-	pfnAheadLib_midiStreamPause = GetAddress("midiStreamPause");
-	pfnAheadLib_midiStreamPosition = GetAddress("midiStreamPosition");
-	pfnAheadLib_midiStreamProperty = GetAddress("midiStreamProperty");
-	pfnAheadLib_midiStreamRestart = GetAddress("midiStreamRestart");
-	pfnAheadLib_midiStreamStop = GetAddress("midiStreamStop");
-	pfnAheadLib_mixerClose = GetAddress("mixerClose");
-	pfnAheadLib_mixerGetControlDetailsA = GetAddress("mixerGetControlDetailsA");
-	pfnAheadLib_mixerGetControlDetailsW = GetAddress("mixerGetControlDetailsW");
-	pfnAheadLib_mixerGetDevCapsA = GetAddress("mixerGetDevCapsA");
-	pfnAheadLib_mixerGetDevCapsW = GetAddress("mixerGetDevCapsW");
-	pfnAheadLib_mixerGetID = GetAddress("mixerGetID");
-	pfnAheadLib_mixerGetLineControlsA = GetAddress("mixerGetLineControlsA");
-	pfnAheadLib_mixerGetLineControlsW = GetAddress("mixerGetLineControlsW");
-	pfnAheadLib_mixerGetLineInfoA = GetAddress("mixerGetLineInfoA");
-	pfnAheadLib_mixerGetLineInfoW = GetAddress("mixerGetLineInfoW");
-	pfnAheadLib_mixerGetNumDevs = GetAddress("mixerGetNumDevs");
-	pfnAheadLib_mixerMessage = GetAddress("mixerMessage");
-	pfnAheadLib_mixerOpen = GetAddress("mixerOpen");
-	pfnAheadLib_mixerSetControlDetails = GetAddress("mixerSetControlDetails");
-	pfnAheadLib_mmDrvInstall = GetAddress("mmDrvInstall");
-	pfnAheadLib_mmGetCurrentTask = GetAddress("mmGetCurrentTask");
-	pfnAheadLib_mmTaskBlock = GetAddress("mmTaskBlock");
-	pfnAheadLib_mmTaskCreate = GetAddress("mmTaskCreate");
-	pfnAheadLib_mmTaskSignal = GetAddress("mmTaskSignal");
-	pfnAheadLib_mmTaskYield = GetAddress("mmTaskYield");
-	pfnAheadLib_mmioAdvance = GetAddress("mmioAdvance");
-	pfnAheadLib_mmioAscend = GetAddress("mmioAscend");
-	pfnAheadLib_mmioClose = GetAddress("mmioClose");
-	pfnAheadLib_mmioCreateChunk = GetAddress("mmioCreateChunk");
-	pfnAheadLib_mmioDescend = GetAddress("mmioDescend");
-	pfnAheadLib_mmioFlush = GetAddress("mmioFlush");
-	pfnAheadLib_mmioGetInfo = GetAddress("mmioGetInfo");
-	pfnAheadLib_mmioInstallIOProcA = GetAddress("mmioInstallIOProcA");
-	pfnAheadLib_mmioInstallIOProcW = GetAddress("mmioInstallIOProcW");
-	pfnAheadLib_mmioOpenA = GetAddress("mmioOpenA");
-	pfnAheadLib_mmioOpenW = GetAddress("mmioOpenW");
-	pfnAheadLib_mmioRead = GetAddress("mmioRead");
-	pfnAheadLib_mmioRenameA = GetAddress("mmioRenameA");
-	pfnAheadLib_mmioRenameW = GetAddress("mmioRenameW");
-	pfnAheadLib_mmioSeek = GetAddress("mmioSeek");
-	pfnAheadLib_mmioSendMessage = GetAddress("mmioSendMessage");
-	pfnAheadLib_mmioSetBuffer = GetAddress("mmioSetBuffer");
-	pfnAheadLib_mmioSetInfo = GetAddress("mmioSetInfo");
-	pfnAheadLib_mmioStringToFOURCCA = GetAddress("mmioStringToFOURCCA");
-	pfnAheadLib_mmioStringToFOURCCW = GetAddress("mmioStringToFOURCCW");
-	pfnAheadLib_mmioWrite = GetAddress("mmioWrite");
-	pfnAheadLib_mmsystemGetVersion = GetAddress("mmsystemGetVersion");
-	pfnAheadLib_mod32Message = GetAddress("mod32Message");
-	pfnAheadLib_mxd32Message = GetAddress("mxd32Message");
-	pfnAheadLib_sndPlaySoundA = GetAddress("sndPlaySoundA");
-	pfnAheadLib_sndPlaySoundW = GetAddress("sndPlaySoundW");
-	pfnAheadLib_tid32Message = GetAddress("tid32Message");
-	pfnAheadLib_timeBeginPeriod = GetAddress("timeBeginPeriod");
-	pfnAheadLib_timeEndPeriod = GetAddress("timeEndPeriod");
-	pfnAheadLib_timeGetDevCaps = GetAddress("timeGetDevCaps");
-	pfnAheadLib_timeGetSystemTime = GetAddress("timeGetSystemTime");
-	pfnAheadLib_timeGetTime = GetAddress("timeGetTime");
-	pfnAheadLib_timeKillEvent = GetAddress("timeKillEvent");
-	pfnAheadLib_timeSetEvent = GetAddress("timeSetEvent");
-	pfnAheadLib_waveInAddBuffer = GetAddress("waveInAddBuffer");
-	pfnAheadLib_waveInClose = GetAddress("waveInClose");
-	pfnAheadLib_waveInGetDevCapsA = GetAddress("waveInGetDevCapsA");
-	pfnAheadLib_waveInGetDevCapsW = GetAddress("waveInGetDevCapsW");
-	pfnAheadLib_waveInGetErrorTextA = GetAddress("waveInGetErrorTextA");
-	pfnAheadLib_waveInGetErrorTextW = GetAddress("waveInGetErrorTextW");
-	pfnAheadLib_waveInGetID = GetAddress("waveInGetID");
-	pfnAheadLib_waveInGetNumDevs = GetAddress("waveInGetNumDevs");
-	pfnAheadLib_waveInGetPosition = GetAddress("waveInGetPosition");
-	pfnAheadLib_waveInMessage = GetAddress("waveInMessage");
-	pfnAheadLib_waveInOpen = GetAddress("waveInOpen");
-	pfnAheadLib_waveInPrepareHeader = GetAddress("waveInPrepareHeader");
-	pfnAheadLib_waveInReset = GetAddress("waveInReset");
-	pfnAheadLib_waveInStart = GetAddress("waveInStart");
-	pfnAheadLib_waveInStop = GetAddress("waveInStop");
-	pfnAheadLib_waveInUnprepareHeader = GetAddress("waveInUnprepareHeader");
-	pfnAheadLib_waveOutBreakLoop = GetAddress("waveOutBreakLoop");
-	pfnAheadLib_waveOutClose = GetAddress("waveOutClose");
-	pfnAheadLib_waveOutGetDevCapsA = GetAddress("waveOutGetDevCapsA");
-	pfnAheadLib_waveOutGetDevCapsW = GetAddress("waveOutGetDevCapsW");
-	pfnAheadLib_waveOutGetErrorTextA = GetAddress("waveOutGetErrorTextA");
-	pfnAheadLib_waveOutGetErrorTextW = GetAddress("waveOutGetErrorTextW");
-	pfnAheadLib_waveOutGetID = GetAddress("waveOutGetID");
-	pfnAheadLib_waveOutGetNumDevs = GetAddress("waveOutGetNumDevs");
-	pfnAheadLib_waveOutGetPitch = GetAddress("waveOutGetPitch");
-	pfnAheadLib_waveOutGetPlaybackRate = GetAddress("waveOutGetPlaybackRate");
-	pfnAheadLib_waveOutGetPosition = GetAddress("waveOutGetPosition");
-	pfnAheadLib_waveOutGetVolume = GetAddress("waveOutGetVolume");
-	pfnAheadLib_waveOutMessage = GetAddress("waveOutMessage");
-	pfnAheadLib_waveOutOpen = GetAddress("waveOutOpen");
-	pfnAheadLib_waveOutPause = GetAddress("waveOutPause");
-	pfnAheadLib_waveOutPrepareHeader = GetAddress("waveOutPrepareHeader");
-	pfnAheadLib_waveOutReset = GetAddress("waveOutReset");
-	pfnAheadLib_waveOutRestart = GetAddress("waveOutRestart");
-	pfnAheadLib_waveOutSetPitch = GetAddress("waveOutSetPitch");
-	pfnAheadLib_waveOutSetPlaybackRate = GetAddress("waveOutSetPlaybackRate");
-	pfnAheadLib_waveOutSetVolume = GetAddress("waveOutSetVolume");
-	pfnAheadLib_waveOutUnprepareHeader = GetAddress("waveOutUnprepareHeader");
-	pfnAheadLib_waveOutWrite = GetAddress("waveOutWrite");
-	pfnAheadLib_wid32Message = GetAddress("wid32Message");
-	pfnAheadLib_wod32Message = GetAddress("wod32Message");
-	return TRUE;
+	g_hRealModule = LoadLibraryA("C:\\Windows\\SysWOW64\\winmm.dll");
+	if (g_hRealModule == NULL)
+	{
+		MessageBoxA(NULL, "无法找到模块：winmm.dll", "AheadLib", MB_ICONSTOP);
+		return false;
+	}
+	pfnAheadLib_Unnamed2 = GetRealApiAddress(MAKEINTRESOURCEA(2));
+	pfnAheadLib_mciExecute = GetRealApiAddress("mciExecute");
+	pfnAheadLib_CloseDriver = GetRealApiAddress("CloseDriver");
+	pfnAheadLib_DefDriverProc = GetRealApiAddress("DefDriverProc");
+	pfnAheadLib_DriverCallback = GetRealApiAddress("DriverCallback");
+	pfnAheadLib_DrvGetModuleHandle = GetRealApiAddress("DrvGetModuleHandle");
+	pfnAheadLib_GetDriverModuleHandle = GetRealApiAddress("GetDriverModuleHandle");
+	pfnAheadLib_NotifyCallbackData = GetRealApiAddress("NotifyCallbackData");
+	pfnAheadLib_OpenDriver = GetRealApiAddress("OpenDriver");
+	pfnAheadLib_PlaySound = GetRealApiAddress("PlaySound");
+	pfnAheadLib_PlaySoundA = GetRealApiAddress("PlaySoundA");
+	pfnAheadLib_PlaySoundW = GetRealApiAddress("PlaySoundW");
+	pfnAheadLib_SendDriverMessage = GetRealApiAddress("SendDriverMessage");
+	pfnAheadLib_WOW32DriverCallback = GetRealApiAddress("WOW32DriverCallback");
+	pfnAheadLib_WOW32ResolveMultiMediaHandle = GetRealApiAddress("WOW32ResolveMultiMediaHandle");
+	pfnAheadLib_WOWAppExit = GetRealApiAddress("WOWAppExit");
+	pfnAheadLib_aux32Message = GetRealApiAddress("aux32Message");
+	pfnAheadLib_auxGetDevCapsA = GetRealApiAddress("auxGetDevCapsA");
+	pfnAheadLib_auxGetDevCapsW = GetRealApiAddress("auxGetDevCapsW");
+	pfnAheadLib_auxGetNumDevs = GetRealApiAddress("auxGetNumDevs");
+	pfnAheadLib_auxGetVolume = GetRealApiAddress("auxGetVolume");
+	pfnAheadLib_auxOutMessage = GetRealApiAddress("auxOutMessage");
+	pfnAheadLib_auxSetVolume = GetRealApiAddress("auxSetVolume");
+	pfnAheadLib_joy32Message = GetRealApiAddress("joy32Message");
+	pfnAheadLib_joyConfigChanged = GetRealApiAddress("joyConfigChanged");
+	pfnAheadLib_joyGetDevCapsA = GetRealApiAddress("joyGetDevCapsA");
+	pfnAheadLib_joyGetDevCapsW = GetRealApiAddress("joyGetDevCapsW");
+	pfnAheadLib_joyGetNumDevs = GetRealApiAddress("joyGetNumDevs");
+	pfnAheadLib_joyGetPos = GetRealApiAddress("joyGetPos");
+	pfnAheadLib_joyGetPosEx = GetRealApiAddress("joyGetPosEx");
+	pfnAheadLib_joyGetThreshold = GetRealApiAddress("joyGetThreshold");
+	pfnAheadLib_joyReleaseCapture = GetRealApiAddress("joyReleaseCapture");
+	pfnAheadLib_joySetCapture = GetRealApiAddress("joySetCapture");
+	pfnAheadLib_joySetThreshold = GetRealApiAddress("joySetThreshold");
+	pfnAheadLib_mci32Message = GetRealApiAddress("mci32Message");
+	pfnAheadLib_mciDriverNotify = GetRealApiAddress("mciDriverNotify");
+	pfnAheadLib_mciDriverYield = GetRealApiAddress("mciDriverYield");
+	pfnAheadLib_mciFreeCommandResource = GetRealApiAddress("mciFreeCommandResource");
+	pfnAheadLib_mciGetCreatorTask = GetRealApiAddress("mciGetCreatorTask");
+	pfnAheadLib_mciGetDeviceIDA = GetRealApiAddress("mciGetDeviceIDA");
+	pfnAheadLib_mciGetDeviceIDFromElementIDA = GetRealApiAddress("mciGetDeviceIDFromElementIDA");
+	pfnAheadLib_mciGetDeviceIDFromElementIDW = GetRealApiAddress("mciGetDeviceIDFromElementIDW");
+	pfnAheadLib_mciGetDeviceIDW = GetRealApiAddress("mciGetDeviceIDW");
+	pfnAheadLib_mciGetDriverData = GetRealApiAddress("mciGetDriverData");
+	pfnAheadLib_mciGetErrorStringA = GetRealApiAddress("mciGetErrorStringA");
+	pfnAheadLib_mciGetErrorStringW = GetRealApiAddress("mciGetErrorStringW");
+	pfnAheadLib_mciGetYieldProc = GetRealApiAddress("mciGetYieldProc");
+	pfnAheadLib_mciLoadCommandResource = GetRealApiAddress("mciLoadCommandResource");
+	pfnAheadLib_mciSendCommandA = GetRealApiAddress("mciSendCommandA");
+	pfnAheadLib_mciSendCommandW = GetRealApiAddress("mciSendCommandW");
+	pfnAheadLib_mciSendStringA = GetRealApiAddress("mciSendStringA");
+	pfnAheadLib_mciSendStringW = GetRealApiAddress("mciSendStringW");
+	pfnAheadLib_mciSetDriverData = GetRealApiAddress("mciSetDriverData");
+	pfnAheadLib_mciSetYieldProc = GetRealApiAddress("mciSetYieldProc");
+	pfnAheadLib_mid32Message = GetRealApiAddress("mid32Message");
+	pfnAheadLib_midiConnect = GetRealApiAddress("midiConnect");
+	pfnAheadLib_midiDisconnect = GetRealApiAddress("midiDisconnect");
+	pfnAheadLib_midiInAddBuffer = GetRealApiAddress("midiInAddBuffer");
+	pfnAheadLib_midiInClose = GetRealApiAddress("midiInClose");
+	pfnAheadLib_midiInGetDevCapsA = GetRealApiAddress("midiInGetDevCapsA");
+	pfnAheadLib_midiInGetDevCapsW = GetRealApiAddress("midiInGetDevCapsW");
+	pfnAheadLib_midiInGetErrorTextA = GetRealApiAddress("midiInGetErrorTextA");
+	pfnAheadLib_midiInGetErrorTextW = GetRealApiAddress("midiInGetErrorTextW");
+	pfnAheadLib_midiInGetID = GetRealApiAddress("midiInGetID");
+	pfnAheadLib_midiInGetNumDevs = GetRealApiAddress("midiInGetNumDevs");
+	pfnAheadLib_midiInMessage = GetRealApiAddress("midiInMessage");
+	pfnAheadLib_midiInOpen = GetRealApiAddress("midiInOpen");
+	pfnAheadLib_midiInPrepareHeader = GetRealApiAddress("midiInPrepareHeader");
+	pfnAheadLib_midiInReset = GetRealApiAddress("midiInReset");
+	pfnAheadLib_midiInStart = GetRealApiAddress("midiInStart");
+	pfnAheadLib_midiInStop = GetRealApiAddress("midiInStop");
+	pfnAheadLib_midiInUnprepareHeader = GetRealApiAddress("midiInUnprepareHeader");
+	pfnAheadLib_midiOutCacheDrumPatches = GetRealApiAddress("midiOutCacheDrumPatches");
+	pfnAheadLib_midiOutCachePatches = GetRealApiAddress("midiOutCachePatches");
+	pfnAheadLib_midiOutClose = GetRealApiAddress("midiOutClose");
+	pfnAheadLib_midiOutGetDevCapsA = GetRealApiAddress("midiOutGetDevCapsA");
+	pfnAheadLib_midiOutGetDevCapsW = GetRealApiAddress("midiOutGetDevCapsW");
+	pfnAheadLib_midiOutGetErrorTextA = GetRealApiAddress("midiOutGetErrorTextA");
+	pfnAheadLib_midiOutGetErrorTextW = GetRealApiAddress("midiOutGetErrorTextW");
+	pfnAheadLib_midiOutGetID = GetRealApiAddress("midiOutGetID");
+	pfnAheadLib_midiOutGetNumDevs = GetRealApiAddress("midiOutGetNumDevs");
+	pfnAheadLib_midiOutGetVolume = GetRealApiAddress("midiOutGetVolume");
+	pfnAheadLib_midiOutLongMsg = GetRealApiAddress("midiOutLongMsg");
+	pfnAheadLib_midiOutMessage = GetRealApiAddress("midiOutMessage");
+	pfnAheadLib_midiOutOpen = GetRealApiAddress("midiOutOpen");
+	pfnAheadLib_midiOutPrepareHeader = GetRealApiAddress("midiOutPrepareHeader");
+	pfnAheadLib_midiOutReset = GetRealApiAddress("midiOutReset");
+	pfnAheadLib_midiOutSetVolume = GetRealApiAddress("midiOutSetVolume");
+	pfnAheadLib_midiOutShortMsg = GetRealApiAddress("midiOutShortMsg");
+	pfnAheadLib_midiOutUnprepareHeader = GetRealApiAddress("midiOutUnprepareHeader");
+	pfnAheadLib_midiStreamClose = GetRealApiAddress("midiStreamClose");
+	pfnAheadLib_midiStreamOpen = GetRealApiAddress("midiStreamOpen");
+	pfnAheadLib_midiStreamOut = GetRealApiAddress("midiStreamOut");
+	pfnAheadLib_midiStreamPause = GetRealApiAddress("midiStreamPause");
+	pfnAheadLib_midiStreamPosition = GetRealApiAddress("midiStreamPosition");
+	pfnAheadLib_midiStreamProperty = GetRealApiAddress("midiStreamProperty");
+	pfnAheadLib_midiStreamRestart = GetRealApiAddress("midiStreamRestart");
+	pfnAheadLib_midiStreamStop = GetRealApiAddress("midiStreamStop");
+	pfnAheadLib_mixerClose = GetRealApiAddress("mixerClose");
+	pfnAheadLib_mixerGetControlDetailsA = GetRealApiAddress("mixerGetControlDetailsA");
+	pfnAheadLib_mixerGetControlDetailsW = GetRealApiAddress("mixerGetControlDetailsW");
+	pfnAheadLib_mixerGetDevCapsA = GetRealApiAddress("mixerGetDevCapsA");
+	pfnAheadLib_mixerGetDevCapsW = GetRealApiAddress("mixerGetDevCapsW");
+	pfnAheadLib_mixerGetID = GetRealApiAddress("mixerGetID");
+	pfnAheadLib_mixerGetLineControlsA = GetRealApiAddress("mixerGetLineControlsA");
+	pfnAheadLib_mixerGetLineControlsW = GetRealApiAddress("mixerGetLineControlsW");
+	pfnAheadLib_mixerGetLineInfoA = GetRealApiAddress("mixerGetLineInfoA");
+	pfnAheadLib_mixerGetLineInfoW = GetRealApiAddress("mixerGetLineInfoW");
+	pfnAheadLib_mixerGetNumDevs = GetRealApiAddress("mixerGetNumDevs");
+	pfnAheadLib_mixerMessage = GetRealApiAddress("mixerMessage");
+	pfnAheadLib_mixerOpen = GetRealApiAddress("mixerOpen");
+	pfnAheadLib_mixerSetControlDetails = GetRealApiAddress("mixerSetControlDetails");
+	pfnAheadLib_mmDrvInstall = GetRealApiAddress("mmDrvInstall");
+	pfnAheadLib_mmGetCurrentTask = GetRealApiAddress("mmGetCurrentTask");
+	pfnAheadLib_mmTaskBlock = GetRealApiAddress("mmTaskBlock");
+	pfnAheadLib_mmTaskCreate = GetRealApiAddress("mmTaskCreate");
+	pfnAheadLib_mmTaskSignal = GetRealApiAddress("mmTaskSignal");
+	pfnAheadLib_mmTaskYield = GetRealApiAddress("mmTaskYield");
+	pfnAheadLib_mmioAdvance = GetRealApiAddress("mmioAdvance");
+	pfnAheadLib_mmioAscend = GetRealApiAddress("mmioAscend");
+	pfnAheadLib_mmioClose = GetRealApiAddress("mmioClose");
+	pfnAheadLib_mmioCreateChunk = GetRealApiAddress("mmioCreateChunk");
+	pfnAheadLib_mmioDescend = GetRealApiAddress("mmioDescend");
+	pfnAheadLib_mmioFlush = GetRealApiAddress("mmioFlush");
+	pfnAheadLib_mmioGetInfo = GetRealApiAddress("mmioGetInfo");
+	pfnAheadLib_mmioInstallIOProcA = GetRealApiAddress("mmioInstallIOProcA");
+	pfnAheadLib_mmioInstallIOProcW = GetRealApiAddress("mmioInstallIOProcW");
+	pfnAheadLib_mmioOpenA = GetRealApiAddress("mmioOpenA");
+	pfnAheadLib_mmioOpenW = GetRealApiAddress("mmioOpenW");
+	pfnAheadLib_mmioRead = GetRealApiAddress("mmioRead");
+	pfnAheadLib_mmioRenameA = GetRealApiAddress("mmioRenameA");
+	pfnAheadLib_mmioRenameW = GetRealApiAddress("mmioRenameW");
+	pfnAheadLib_mmioSeek = GetRealApiAddress("mmioSeek");
+	pfnAheadLib_mmioSendMessage = GetRealApiAddress("mmioSendMessage");
+	pfnAheadLib_mmioSetBuffer = GetRealApiAddress("mmioSetBuffer");
+	pfnAheadLib_mmioSetInfo = GetRealApiAddress("mmioSetInfo");
+	pfnAheadLib_mmioStringToFOURCCA = GetRealApiAddress("mmioStringToFOURCCA");
+	pfnAheadLib_mmioStringToFOURCCW = GetRealApiAddress("mmioStringToFOURCCW");
+	pfnAheadLib_mmioWrite = GetRealApiAddress("mmioWrite");
+	pfnAheadLib_mmsystemGetVersion = GetRealApiAddress("mmsystemGetVersion");
+	pfnAheadLib_mod32Message = GetRealApiAddress("mod32Message");
+	pfnAheadLib_mxd32Message = GetRealApiAddress("mxd32Message");
+	pfnAheadLib_sndPlaySoundA = GetRealApiAddress("sndPlaySoundA");
+	pfnAheadLib_sndPlaySoundW = GetRealApiAddress("sndPlaySoundW");
+	pfnAheadLib_tid32Message = GetRealApiAddress("tid32Message");
+	pfnAheadLib_timeBeginPeriod = GetRealApiAddress("timeBeginPeriod");
+	pfnAheadLib_timeEndPeriod = GetRealApiAddress("timeEndPeriod");
+	pfnAheadLib_timeGetDevCaps = GetRealApiAddress("timeGetDevCaps");
+	pfnAheadLib_timeGetSystemTime = GetRealApiAddress("timeGetSystemTime");
+	pfnAheadLib_timeGetTime = GetRealApiAddress("timeGetTime");
+	pfnAheadLib_timeKillEvent = GetRealApiAddress("timeKillEvent");
+	pfnAheadLib_timeSetEvent = GetRealApiAddress("timeSetEvent");
+	pfnAheadLib_waveInAddBuffer = GetRealApiAddress("waveInAddBuffer");
+	pfnAheadLib_waveInClose = GetRealApiAddress("waveInClose");
+	pfnAheadLib_waveInGetDevCapsA = GetRealApiAddress("waveInGetDevCapsA");
+	pfnAheadLib_waveInGetDevCapsW = GetRealApiAddress("waveInGetDevCapsW");
+	pfnAheadLib_waveInGetErrorTextA = GetRealApiAddress("waveInGetErrorTextA");
+	pfnAheadLib_waveInGetErrorTextW = GetRealApiAddress("waveInGetErrorTextW");
+	pfnAheadLib_waveInGetID = GetRealApiAddress("waveInGetID");
+	pfnAheadLib_waveInGetNumDevs = GetRealApiAddress("waveInGetNumDevs");
+	pfnAheadLib_waveInGetPosition = GetRealApiAddress("waveInGetPosition");
+	pfnAheadLib_waveInMessage = GetRealApiAddress("waveInMessage");
+	pfnAheadLib_waveInOpen = GetRealApiAddress("waveInOpen");
+	pfnAheadLib_waveInPrepareHeader = GetRealApiAddress("waveInPrepareHeader");
+	pfnAheadLib_waveInReset = GetRealApiAddress("waveInReset");
+	pfnAheadLib_waveInStart = GetRealApiAddress("waveInStart");
+	pfnAheadLib_waveInStop = GetRealApiAddress("waveInStop");
+	pfnAheadLib_waveInUnprepareHeader = GetRealApiAddress("waveInUnprepareHeader");
+	pfnAheadLib_waveOutBreakLoop = GetRealApiAddress("waveOutBreakLoop");
+	pfnAheadLib_waveOutClose = GetRealApiAddress("waveOutClose");
+	pfnAheadLib_waveOutGetDevCapsA = GetRealApiAddress("waveOutGetDevCapsA");
+	pfnAheadLib_waveOutGetDevCapsW = GetRealApiAddress("waveOutGetDevCapsW");
+	pfnAheadLib_waveOutGetErrorTextA = GetRealApiAddress("waveOutGetErrorTextA");
+	pfnAheadLib_waveOutGetErrorTextW = GetRealApiAddress("waveOutGetErrorTextW");
+	pfnAheadLib_waveOutGetID = GetRealApiAddress("waveOutGetID");
+	pfnAheadLib_waveOutGetNumDevs = GetRealApiAddress("waveOutGetNumDevs");
+	pfnAheadLib_waveOutGetPitch = GetRealApiAddress("waveOutGetPitch");
+	pfnAheadLib_waveOutGetPlaybackRate = GetRealApiAddress("waveOutGetPlaybackRate");
+	pfnAheadLib_waveOutGetPosition = GetRealApiAddress("waveOutGetPosition");
+	pfnAheadLib_waveOutGetVolume = GetRealApiAddress("waveOutGetVolume");
+	pfnAheadLib_waveOutMessage = GetRealApiAddress("waveOutMessage");
+	pfnAheadLib_waveOutOpen = GetRealApiAddress("waveOutOpen");
+	pfnAheadLib_waveOutPause = GetRealApiAddress("waveOutPause");
+	pfnAheadLib_waveOutPrepareHeader = GetRealApiAddress("waveOutPrepareHeader");
+	pfnAheadLib_waveOutReset = GetRealApiAddress("waveOutReset");
+	pfnAheadLib_waveOutRestart = GetRealApiAddress("waveOutRestart");
+	pfnAheadLib_waveOutSetPitch = GetRealApiAddress("waveOutSetPitch");
+	pfnAheadLib_waveOutSetPlaybackRate = GetRealApiAddress("waveOutSetPlaybackRate");
+	pfnAheadLib_waveOutSetVolume = GetRealApiAddress("waveOutSetVolume");
+	pfnAheadLib_waveOutUnprepareHeader = GetRealApiAddress("waveOutUnprepareHeader");
+	pfnAheadLib_waveOutWrite = GetRealApiAddress("waveOutWrite");
+	pfnAheadLib_wid32Message = GetRealApiAddress("wid32Message");
+	pfnAheadLib_wod32Message = GetRealApiAddress("wod32Message");
+	return true;
+}
+void Free()
+{
+	if (g_hRealModule)
+		FreeLibrary(g_hRealModule);
 }
 #pragma endregion
 
-
-VOID WINAPI Free()
+void __declspec(naked)HookFramework()
 {
-	if (g_hRealModule)
+	__asm//保存现场
 	{
-		FreeLibrary(g_hRealModule);
+		pushad
+		pushfd
+	}
+	MessageBoxA(0, "Hook！", "提示", 0);
+	__asm//恢复现场+跳转修复
+	{
+		popfd
+		popad
+		//jmp Hook.dwRecoverAddr; //跳到恢复区
 	}
 }
-
-BOOL WINAPI Load()
-{
-	TCHAR tzPath[MAX_PATH];
-	TCHAR tzTemp[MAX_PATH * 2];
-
-	//
-	// 这里是否从系统目录或当前目录加载原始DLL
-	//
-	//GetModuleFileName(NULL,tzPath,MAX_PATH); //获取本目录下的
-	//PathRemoveFileSpec(tzPath);
-
-	GetSystemDirectoryA(tzPath, MAX_PATH); //默认获取系统目录的
-
-	lstrcat(tzPath, TEXT("\\winmm.dll"));
-
-	g_hRealModule = LoadLibraryA(tzPath);
-	if (g_hRealModule == NULL)
-	{
-		wsprintfA(tzTemp, TEXT("无法找到模块 %s,程序无法正常运行"), tzPath);
-		MessageBox(NULL, tzTemp, TEXT("AheadLib"), MB_ICONSTOP);
-	}
-
-	return (g_hRealModule != NULL);
-
-}
-
-
-
-
 
 DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 {
 	system("calc");
-	HANDLE hProcess;
-
-	PVOID addr1 = reinterpret_cast<PVOID>(0x00401000);
-	BYTE data1[] = { 0x90, 0x90, 0x90, 0x90 };
-
-	//
-	// 绕过VMP3.x 的内存保护
-	//
-	hProcess = OpenProcess(PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_VM_WRITE, FALSE, GetCurrentProcessId());
-	if (hProcess)
-	{
-		WriteProcessMemory(hProcess, addr1, data1, sizeof(data1), NULL);
-
-		CloseHandle(hProcess);
-	}
-
 	return 0;
 }
-
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		
-		//DisableThreadLibraryCalls(hModule);
-		if (Load() && Init())
+		if (Init())
 		{
-			TCHAR szAppName[MAX_PATH] = TEXT("WeChat.exe");//请修改宿主进程名
-			TCHAR szCurName[MAX_PATH];
-
-			GetModuleFileName(NULL, szCurName, MAX_PATH);
-			PathStripPath(szCurName);
-
-			//是否判断宿主进程名
-			if (StrCmpI(szCurName, szAppName) == 0)
+			const char* szAppName = "Test.exe";//宿主进程名
+			char szPathName[MAX_PATH]{ 0 };
+			char szFileName[MAX_PATH]{ 0 };
+			GetModuleFileNameA(NULL, szPathName, MAX_PATH);
+			StringLib::GetFileName(szPathName, szFileName, MAX_PATH);
+			if (lstrcmpiA(szFileName, szAppName) == 0)
 			{
-				//启动补丁线程或者其他操作
 				HANDLE hThread = CreateThread(NULL, NULL, ThreadProc, NULL, NULL, NULL);
 				if (hThread)
-				{
 					CloseHandle(hThread);
-				}
 			}
 		}
-		break;
-	case DLL_THREAD_ATTACH:
-		break;
-	case DLL_THREAD_DETACH:
 		break;
 	case DLL_PROCESS_DETACH:
 		Free();

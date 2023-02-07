@@ -60,11 +60,11 @@ INT_PTR CALLBACK DialogFunc(HWND hModule, UINT uType, WPARAM wParam, LPARAM lPar
 	}
 	return false;
 }
+
 extern "C" _declspec(dllexport) void Test()
 {
 	//MessageBoxA(0, "Test！", "提示", 0);
 }
-
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
