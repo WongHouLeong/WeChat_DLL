@@ -1,5 +1,8 @@
 #include "..\UtilityLib\UtilityLib.h"
 HMODULE g_hRealModule(NULL);
+HookLib msgHook;
+#define getMsgCallOffset 0xCA2800;
+HANDLE hProcess(0);
 #pragma region MyRegion
 #pragma comment(linker, "/EXPORT:Noname2=_AheadLib_Unnamed2,@2,NONAME")
 #pragma comment(linker, "/EXPORT:mciExecute=_AheadLib_mciExecute,@3")
@@ -1581,18 +1584,23 @@ void __declspec(naked)HookFramework()
 		pushad
 		pushfd
 	}
-	MessageBoxA(0, "Hook！", "提示", 0);
+	StringLib::DbgPrintf("[WeChat]HOOK");
 	__asm//恢复现场+跳转修复
 	{
 		popfd
 		popad
-		//jmp Hook.dwRecoverAddr; //跳到恢复区
+		jmp msgHook.dwRecoverAddr; //跳到恢复区
 	}
 }
 
 DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 {
-	system("calc");
+	DWORD dwProcessId = GetCurrentProcessId(); //获取进程ID
+	hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId); //以全部权限，打开进程，得到进程句柄
+	if (hProcess != NULL)
+		StringLib::DbgPrintf("进程句柄：%d", hProcess);
+	DWORD dwBaseAddress =(DWORD) GetModuleHandleA("WeChatWin.dll")+ getMsgCallOffset; //指定HOOK地址
+	msgHook.Install(hProcess, dwBaseAddress, 6, &HookFramework);
 	return 0;
 }
 
@@ -1603,7 +1611,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 	case DLL_PROCESS_ATTACH:
 		if (Init())
 		{
-			const char* szAppName = "Test.exe";//宿主进程名
+			const char* szAppName = "WeChat.exe";//宿主进程名
 			char szPathName[MAX_PATH]{ 0 };
 			char szFileName[MAX_PATH]{ 0 };
 			GetModuleFileNameA(NULL, szPathName, MAX_PATH);

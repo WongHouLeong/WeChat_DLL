@@ -53,6 +53,8 @@ bool HookLib::Install(HANDLE hProcess, DWORD dwHookAddress, DWORD dwHookSize, LP
 	DWORD pUserCodeAddr = (DWORD)&g_dwUserCodeAddr;//构造[0x000000]，相当于套两层娃，这里写到内存去，用不用全局无所谓
 	memcpy_s(&ucJmpUserCode[2], sizeof(DWORD), &pUserCodeAddr, sizeof(DWORD));//修改HOOK代码的跳转参数,在第二位开始,长度为4,构造完整语句
 	memcpy_s(&g_ucRecoverCode[g_dwHookSize], sizeof(ucJmpUserCode), &ucJmpUserCode, sizeof(ucJmpUserCode));//将构造好的跳转代码放到恢复区
+	DWORD dwOldProtect(0);
+	VirtualProtectEx(g_hProcess, &g_ucRecoverCode, sizeof(g_ucRecoverCode), PAGE_EXECUTE_READWRITE, &dwOldProtect);//赋代码运行权限
 #pragma endregion
 	g_bIsInstalled = true;
 	return true;
