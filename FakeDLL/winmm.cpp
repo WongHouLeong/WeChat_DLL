@@ -1,7 +1,7 @@
 #include "..\UtilityLib\UtilityLib.h"
 HMODULE g_hRealModule(NULL);
 HookLib msgHook;
-#define getMsgCallOffset 0xCA2800;
+#define getMsgCallOffset 0xCA020F;
 HANDLE hProcess(0);
 #pragma region MyRegion
 #pragma comment(linker, "/EXPORT:Noname2=_AheadLib_Unnamed2,@2,NONAME")
@@ -1577,6 +1577,8 @@ void Free()
 }
 #pragma endregion
 
+char* wxid;
+char* data;
 void __declspec(naked)HookFramework()
 {
 	__asm//保存现场
@@ -1584,7 +1586,19 @@ void __declspec(naked)HookFramework()
 		pushad
 		pushfd
 	}
-	StringLib::DbgPrintf("[WeChat]HOOK");
+	_asm
+	{
+		mov eax, [ebp - 0x78]
+		mov wxid, eax
+		mov eax, [ebp - 0x38]
+		mov data, eax
+	}
+	if (!IsBadStringPtrA(wxid, 1))
+		StringLib::DbgPrintf(wxid);
+	if (!IsBadStringPtrA(data, 1))
+		StringLib::DbgPrintf(data);
+	wxid = NULL;
+	data = NULL;
 	__asm//恢复现场+跳转修复
 	{
 		popfd
@@ -1593,13 +1607,16 @@ void __declspec(naked)HookFramework()
 	}
 }
 
+
+
+
 DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 {
 	DWORD dwProcessId = GetCurrentProcessId(); //获取进程ID
 	hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, dwProcessId); //以全部权限，打开进程，得到进程句柄
 	if (hProcess != NULL)
 		StringLib::DbgPrintf("进程句柄：%d", hProcess);
-	DWORD dwBaseAddress =(DWORD) GetModuleHandleA("WeChatWin.dll")+ getMsgCallOffset; //指定HOOK地址
+	DWORD dwBaseAddress = (DWORD)GetModuleHandleA("WeChatWin.dll") + getMsgCallOffset; //指定HOOK地址
 	msgHook.Install(hProcess, dwBaseAddress, 6, &HookFramework);
 	return 0;
 }
