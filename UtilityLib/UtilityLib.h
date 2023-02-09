@@ -12,6 +12,7 @@ class StringLib
 public:
 	static void HexArr2Str(const unsigned char arrHex[], unsigned int unArrSize, char* szBuf, unsigned int uBufSize);
 	static void DbgPrintf(const char* cStr, ...);
+	static void DbgPrintf_W(const WCHAR* cStr, ...);
 	static void GetPrintf(const char* pszFormat, char* szBuf, unsigned int uSize, ...);
 	static void GetFileName(const char* lpFilePath, char* szBuf, unsigned int uSize);
 };
@@ -35,4 +36,8 @@ public:
 	bool IsInstalled();
 	DWORD dwRecoverAddr{ 0 }; //用于ASM跳转到类内函数
 };
-
+class EnCodeLib
+{
+public:
+	static void UTF8_to_ANSI(char* szU8, char* szBuf, unsigned int unBufSize);
+};

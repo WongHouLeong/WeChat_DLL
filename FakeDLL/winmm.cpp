@@ -1579,6 +1579,7 @@ void Free()
 
 char* wxid;
 char* data;
+char buf[4096]{ 0 };
 void __declspec(naked)HookFramework()
 {
 	__asm//保存现场
@@ -1591,14 +1592,20 @@ void __declspec(naked)HookFramework()
 		mov eax, [ebp - 0x78]
 		mov wxid, eax
 		mov eax, [ebp - 0x38]
-		mov data, eax
+		mov eax, [eax]
+		mov data[0], eax
 	}
 	if (!IsBadStringPtrA(wxid, 1))
-		StringLib::DbgPrintf(wxid);
-	if (!IsBadStringPtrA(data, 1))
-		StringLib::DbgPrintf(data);
-	wxid = NULL;
-	data = NULL;
+	{
+		StringLib::DbgPrintf(wxid); 
+	}
+		
+	if (!IsBadStringPtrA(&data[0], 1))
+	{
+		EnCodeLib::UTF8_to_ANSI(data, buf, sizeof(buf));
+		StringLib::DbgPrintf(buf);
+	}
+		
 	__asm//恢复现场+跳转修复
 	{
 		popfd
@@ -1617,6 +1624,7 @@ DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 	if (hProcess != NULL)
 		StringLib::DbgPrintf("进程句柄：%d", hProcess);
 	DWORD dwBaseAddress = (DWORD)GetModuleHandleA("WeChatWin.dll") + getMsgCallOffset; //指定HOOK地址
+	SetConsoleOutputCP(CP_UTF8);
 	msgHook.Install(hProcess, dwBaseAddress, 6, &HookFramework);
 	return 0;
 }

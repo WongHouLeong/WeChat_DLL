@@ -25,6 +25,18 @@ void StringLib::DbgPrintf(const char* pszFormat, ...)
 	strcat_s(szBuf, "\n");
 	OutputDebugStringA(szBuf);//输出结果
 }
+void StringLib::DbgPrintf_W(const WCHAR* pszFormat, ...)
+{
+	WCHAR szBuf[4096] = L"[WeChat] ";
+	WCHAR szTmp[4096]{ 0 };
+	va_list argList(0); //va_list 用于保存参数
+	va_start(argList, pszFormat);//遍历参数列表，并保存至argList
+	vswprintf_s(szTmp, pszFormat, argList);//将字符串及参数进行格式化打印至szBuf
+	va_end(argList);//检索所有参数后，va_end 将指针重置为 NULL，与va_start成对出现
+	wcscat_s(szBuf, szTmp);
+	wcscat_s(szBuf, L"\n");
+	OutputDebugStringW(szBuf);//输出结果
+}
 void StringLib::GetPrintf(const char* pszFormat, char* szBuf, unsigned int unBufSize, ...)
 {
 	memset(szBuf, 0x0, unBufSize);

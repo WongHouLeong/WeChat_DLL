@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnCodeLib.cpp" />
     <ClCompile Include="HookLib.cpp" />
     <ClCompile Include="MemoryLib.cpp" />
     <ClCompile Include="StringLib.cpp" />
