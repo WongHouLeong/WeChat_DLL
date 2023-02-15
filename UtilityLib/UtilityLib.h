@@ -12,9 +12,9 @@ class StringLib
 public:
 	static void HexArr2Str(const unsigned char arrHex[], unsigned int unArrSize, char* szBuf, unsigned int uBufSize);
 	static void DbgPrintf(const char* cStr, ...);
-	static void DbgPrintf_W(const WCHAR* cStr, ...);
 	static void GetPrintf(const char* pszFormat, char* szBuf, unsigned int uSize, ...);
 	static void GetFileName(const char* lpFilePath, char* szBuf, unsigned int uSize);
+	static void DbgOutPut_W(const wchar_t* szTitle, const wchar_t* szData);
 };
 class HookLib
 {

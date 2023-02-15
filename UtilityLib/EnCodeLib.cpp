@@ -13,8 +13,8 @@ void EnCodeLib::UTF8_to_ANSI(char* szU8,char* szBuf,unsigned int unBufSize)
     WideCharToMultiByte(CP_ACP, NULL, wszString, wcslen(wszString), szAnsi, ansiLen, NULL, NULL);
     szAnsi[ansiLen] = '\0';
     memcpy_s(szBuf, unBufSize, szAnsi, ansiLen + 1);
-    delete wszString;
-    delete szAnsi;
+    delete[] wszString;
+    delete[] szAnsi;
 }
 
 std::string ConvertWideToANSI(const std::wstring& wstr)

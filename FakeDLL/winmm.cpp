@@ -1,7 +1,7 @@
 #include "..\UtilityLib\UtilityLib.h"
 HMODULE g_hRealModule(NULL);
 HookLib msgHook;
-#define getMsgCallOffset 0xCA020F;
+#define getMsgCallOffset 0xC7E540;
 HANDLE hProcess(0);
 #pragma region MyRegion
 #pragma comment(linker, "/EXPORT:Noname2=_AheadLib_Unnamed2,@2,NONAME")
@@ -1577,8 +1577,9 @@ void Free()
 }
 #pragma endregion
 
-char* wxid;
-char* data;
+DWORD pWechatIDReceiver;
+DWORD pWechatIDSender;
+DWORD pMsgdata;
 char buf[4096]{ 0 };
 void __declspec(naked)HookFramework()
 {
@@ -1589,23 +1590,19 @@ void __declspec(naked)HookFramework()
 	}
 	_asm
 	{
-		mov eax, [ebp - 0x78]
-		mov wxid, eax
-		mov eax, [ebp - 0x38]
-		mov eax, [eax]
-		mov data[0], eax
+		mov eax, [ebp - 0x6c]
+		mov eax,[eax]
+		mov pWechatIDReceiver,eax
+		mov eax, [ebp - 0x3C]
+		mov pWechatIDSender,eax
+		mov eax, [ebp + 0x94]
+		mov pMsgdata, eax
+
 	}
-	if (!IsBadStringPtrA(wxid, 1))
-	{
-		StringLib::DbgPrintf(wxid); 
-	}
-		
-	if (!IsBadStringPtrA(&data[0], 1))
-	{
-		EnCodeLib::UTF8_to_ANSI(data, buf, sizeof(buf));
-		StringLib::DbgPrintf(buf);
-	}
-		
+	StringLib::DbgOutPut_W(L"Sender:", (wchar_t*)pWechatIDReceiver);
+	StringLib::DbgOutPut_W(L"Receiver:",(wchar_t*)pWechatIDSender);
+	StringLib::DbgOutPut_W(L"MsgData:",(wchar_t*)pMsgdata);
+	StringLib::DbgOutPut_W(L"", L"");
 	__asm//恢复现场+跳转修复
 	{
 		popfd
@@ -1625,7 +1622,7 @@ DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 		StringLib::DbgPrintf("进程句柄：%d", hProcess);
 	DWORD dwBaseAddress = (DWORD)GetModuleHandleA("WeChatWin.dll") + getMsgCallOffset; //指定HOOK地址
 	SetConsoleOutputCP(CP_UTF8);
-	msgHook.Install(hProcess, dwBaseAddress, 6, &HookFramework);
+	msgHook.Install(hProcess, dwBaseAddress, 10, &HookFramework);
 	return 0;
 }
 
