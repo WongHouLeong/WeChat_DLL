@@ -1577,10 +1577,10 @@ void Free()
 }
 #pragma endregion
 
-DWORD pWechatIDReceiver;
-DWORD pWechatIDSender;
+DWORD pTarget;
 DWORD pMsgdata;
-char buf[4096]{ 0 };
+bool bIsSender;
+
 void __declspec(naked)HookFramework()
 {
 	__asm//保存现场
@@ -1591,17 +1591,29 @@ void __declspec(naked)HookFramework()
 	_asm
 	{
 		mov eax, [ebp - 0x6c]
-		mov eax,[eax]
-		mov pWechatIDReceiver,eax
-		mov eax, [ebp - 0x3C]
-		mov pWechatIDSender,eax
+		mov eax, [eax]
+		mov pTarget, eax
+
 		mov eax, [ebp + 0x94]
 		mov pMsgdata, eax
 
+		mov eax, [ebp - 0x2B8]
+		cmp eax, 0
+		jne Label1
+		mov bIsSender, 0
+		jmp Label2;
+	Label1:
+		mov bIsSender, 1;
+	Label2:
+		xor eax, eax
 	}
-	StringLib::DbgOutPut_W(L"Sender:", (wchar_t*)pWechatIDReceiver);
-	StringLib::DbgOutPut_W(L"Receiver:",(wchar_t*)pWechatIDSender);
-	StringLib::DbgOutPut_W(L"MsgData:",(wchar_t*)pMsgdata);
+	if (bIsSender)
+		StringLib::DbgOutPut_W(L"发送消息:", L"");
+	else
+		StringLib::DbgOutPut_W(L"接收消息:", L"");
+	StringLib::DbgOutPut_W(L"Target:", (wchar_t*)pTarget);
+	//StringLib::DbgOutPut_W(L"Receiver:", (wchar_t*)pWechatIDSender);
+	StringLib::DbgOutPut_W(L"MsgData:", (wchar_t*)pMsgdata);
 	StringLib::DbgOutPut_W(L"", L"");
 	__asm//恢复现场+跳转修复
 	{
