@@ -27,7 +27,7 @@
 
 ---
 ## 效果图
-image.png
+![Image text](screen.png)
 
 ---
 
