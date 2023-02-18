@@ -1579,8 +1579,8 @@ void Free()
 
 DWORD pTarget;
 DWORD pMsgdata;
-bool bIsSender;
-
+wchar_t zsTarget[100];
+wchar_t zsMsgBuf[10000];
 void __declspec(naked)HookFramework()
 {
 	__asm//保存现场
@@ -1596,24 +1596,11 @@ void __declspec(naked)HookFramework()
 
 		mov eax, [ebp + 0x94]
 		mov pMsgdata, eax
-
-		mov eax, [ebp - 0x2B8]
-		cmp eax, 0
-		jne Label1
-		mov bIsSender, 0
-		jmp Label2;
-	Label1:
-		mov bIsSender, 1;
-	Label2:
-		xor eax, eax
 	}
-	if (bIsSender)
-		StringLib::DbgOutPut_W(L"发送消息:", L"");
-	else
-		StringLib::DbgOutPut_W(L"接收消息:", L"");
-	StringLib::DbgOutPut_W(L"Target:", (wchar_t*)pTarget);
-	//StringLib::DbgOutPut_W(L"Receiver:", (wchar_t*)pWechatIDSender);
-	StringLib::DbgOutPut_W(L"MsgData:", (wchar_t*)pMsgdata);
+	if (MemoryLib::ReadProcessMemory(hProcess, pTarget, zsTarget, sizeof(zsTarget)))
+		StringLib::DbgOutPut_W(L"Target:", zsTarget);
+	if (MemoryLib::ReadProcessMemory(hProcess, pMsgdata, zsMsgBuf, sizeof(zsMsgBuf)))
+		StringLib::DbgOutPut_W(L"MsgData:", zsMsgBuf);;
 	StringLib::DbgOutPut_W(L"", L"");
 	__asm//恢复现场+跳转修复
 	{
@@ -1633,7 +1620,6 @@ DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 	if (hProcess != NULL)
 		StringLib::DbgPrintf("进程句柄：%d", hProcess);
 	DWORD dwBaseAddress = (DWORD)GetModuleHandleA("WeChatWin.dll") + getMsgCallOffset; //指定HOOK地址
-	SetConsoleOutputCP(CP_UTF8);
 	msgHook.Install(hProcess, dwBaseAddress, 10, &HookFramework);
 	return 0;
 }

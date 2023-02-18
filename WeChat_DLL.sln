@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeChat_DLL", "WeChat_DLL\WeChat_DLL.vcxproj", "{24B4DE44-D636-4425-BD16-9A6F4FAFC2EA}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UtilityLib", "UtilityLib\UtilityLib.vcxproj", "{4F1FA9C6-0DBB-47F3-9DC1-0FF9A6F3D02E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FakeDLL", "FakeDLL\FakeDLL.vcxproj", "{5EED4EE1-EBEA-473B-B1D0-74E142C245FE}"
@@ -15,10 +13,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24B4DE44-D636-4425-BD16-9A6F4FAFC2EA}.Debug|x86.ActiveCfg = Debug|Win32
-		{24B4DE44-D636-4425-BD16-9A6F4FAFC2EA}.Debug|x86.Build.0 = Debug|Win32
-		{24B4DE44-D636-4425-BD16-9A6F4FAFC2EA}.Release|x86.ActiveCfg = Release|Win32
-		{24B4DE44-D636-4425-BD16-9A6F4FAFC2EA}.Release|x86.Build.0 = Release|Win32
 		{4F1FA9C6-0DBB-47F3-9DC1-0FF9A6F3D02E}.Debug|x86.ActiveCfg = Debug|Win32
 		{4F1FA9C6-0DBB-47F3-9DC1-0FF9A6F3D02E}.Debug|x86.Build.0 = Debug|Win32
 		{4F1FA9C6-0DBB-47F3-9DC1-0FF9A6F3D02E}.Release|x86.ActiveCfg = Release|Win32
