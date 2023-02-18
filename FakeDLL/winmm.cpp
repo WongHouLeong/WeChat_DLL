@@ -1609,10 +1609,6 @@ void __declspec(naked)HookFramework()
 		jmp msgHook.dwRecoverAddr; //跳到恢复区
 	}
 }
-
-
-
-
 DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 {
 	DWORD dwProcessId = GetCurrentProcessId(); //获取进程ID
@@ -1623,7 +1619,6 @@ DWORD WINAPI ThreadProc(LPVOID lpThreadParameter)
 	msgHook.Install(hProcess, dwBaseAddress, 10, &HookFramework);
 	return 0;
 }
-
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
 	switch (ul_reason_for_call)
